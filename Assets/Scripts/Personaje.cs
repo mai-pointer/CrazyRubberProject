@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,13 +20,22 @@ public class Personaje : MonoBehaviour
 
     [Header("Agachar")]
     [SerializeField] private float alturaAgachado = 1f;
+    [SerializeField] private float tiempoAgachado = 1;
     private BoxCollider boxcolider;
+    private bool agachado;
 
     [Header("Controles")]
     [SerializeField] private float deslizamientoMin = 50f;
     [SerializeField] private bool movil, pc;
 
+
     private Vector2 inicialPos;
+    private float alturaOriginal;
+
+    private void Start()
+    {
+        alturaOriginal = transform.position.y;
+    }
 
     void Update()
     {
@@ -34,6 +44,17 @@ public class Personaje : MonoBehaviour
 
         if (movil) Movil();
         if(pc) PC();
+
+        if (transform.position.y < alturaOriginal)
+        {
+            rb.velocity = Vector3.zero;
+            if(rb.useGravity) rb.useGravity = false;
+            transform.position = new Vector3(transform.position.x, alturaOriginal, transform.position.z);
+        }
+        else {
+            if (!rb.useGravity) rb.useGravity = true;
+        }
+
     }
 
     private void Dirigir(int index)
@@ -51,8 +72,24 @@ public class Personaje : MonoBehaviour
                 break;
             case 1:
                 //Agachar
-                rb.AddForce(Vector3.down * fuerzaSalto * 2, ForceMode.Impulse);
-                boxcolider.size = new Vector3(transform.localScale.x, alturaAgachado, transform.localScale.z);
+                if (agachado == true) return;
+
+                agachado = true;
+
+                Vector3 size = boxcolider.size;
+                Vector3 center = boxcolider.center;
+
+                if (transform.position.y > 0) rb.AddForce(Vector3.down * fuerzaSalto * 2, ForceMode.Impulse);
+                boxcolider.size = new Vector3(boxcolider.size.x, alturaAgachado, boxcolider.size.z);
+                boxcolider.center = new Vector3(boxcolider.center.x, -(alturaAgachado/2), boxcolider.center.z);
+
+                StartCoroutine(Esperar(tiempoAgachado, () =>
+                {
+                    boxcolider.size = size;
+                    boxcolider.center = center;
+
+                    agachado = false;
+                }));
                 break;
             case 2:
                 //Derecha
@@ -187,5 +224,11 @@ public class Personaje : MonoBehaviour
                 Dirigir(i);
             }
         }
+    }
+
+    private IEnumerator Esperar(float tiempo, Action funcion)
+    {
+        yield return new WaitForSeconds(tiempo);
+        funcion?.Invoke();
     }
 }
