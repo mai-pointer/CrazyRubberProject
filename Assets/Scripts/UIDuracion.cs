@@ -45,7 +45,7 @@ public class UIDuracion : MonoBehaviour
 
     }
 
-    IEnumerator FadeImage()
+    private IEnumerator FadeImage()
     {
         Image image = GetComponent<Image>();
         float tiempoPasado = 0f;
@@ -62,6 +62,10 @@ public class UIDuracion : MonoBehaviour
 
         image.fillAmount = 0f;
 
+        Destruir();
+    }
+
+    public void Destruir() {
         interacciones.marcadores.Remove(this);
         Destroy(gameObject);
     }

@@ -20,6 +20,7 @@ public class Interacciones : MonoBehaviour
 
     [Header("Power ups")]
     private PowerUp[] powerUps;
+    private bool escudo;
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class Interacciones : MonoBehaviour
                     
                 }));
             }),
-            new PowerUp("Multiplicador", 5, (PowerUp elemento) => {
+            new PowerUp("Multiplicador", 10, (PowerUp elemento) => {
                 cantMonedas *= 2;
 
                 StartCoroutine(Esperar(elemento, () =>
@@ -52,8 +53,16 @@ public class Interacciones : MonoBehaviour
                     cantMonedas /= 2;
                 }));
             }),
-            new PowerUp("Escudo", 15, (PowerUp elemento) => {
+            new PowerUp("Escudo", 25, (PowerUp elemento) => {
+                GameObject escudoGO = transform.GetChild(1).gameObject;
+                escudoGO.SetActive(true);
+                escudo = true;
 
+                StartCoroutine(Esperar(elemento, () =>
+                {
+                    escudo = false;
+                    escudoGO.SetActive(false);
+                }));
             })
         };
     }
@@ -85,6 +94,20 @@ public class Interacciones : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(tagMuerte))
         {
+            if (escudo)
+            {
+                GameObject escudoGO = transform.GetChild(1).gameObject;
+
+                escudoGO.SetActive(false);
+                escudo = false;
+
+                Destroy(collision.gameObject);
+                powerUps[2].marcador.Destruir();
+                powerUps[2].usado = false;
+
+                return;
+            }
+
             //Muerte
             Debug.Log("MUERTO");
         }
@@ -105,6 +128,7 @@ public class Interacciones : MonoBehaviour
         StartCoroutine(marcadorScript.Mover());
 
         marcadores.Add(marcadorScript);
+        elemento.marcador = marcadorScript;
 
         yield return new WaitForSeconds(elemento.duracion);
 
@@ -117,6 +141,7 @@ public class Interacciones : MonoBehaviour
         public string tag;
         public float duracion;
         public bool usado;
+        public UIDuracion marcador;
         public Action<PowerUp> funcion;
 
 
