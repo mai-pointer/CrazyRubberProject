@@ -6,5 +6,5 @@ using UnityEngine;
 public partial class Data
 {
     public float mejor_puntuacion;
-    public float monedas;
+    public int monedas;
 }
