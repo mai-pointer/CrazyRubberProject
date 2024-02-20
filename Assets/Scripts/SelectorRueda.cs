@@ -159,6 +159,7 @@ public class SelectorRueda : MonoBehaviour
 
                 // Mostrar mensaje de éxito
                 Debug.Log("Rueda comprada con éxito.");
+                Save.Data.monedas = money;
             }
             else
             {
@@ -188,5 +189,7 @@ public class SelectorRueda : MonoBehaviour
             int comprada = PlayerPrefs.GetInt("RuedaComprada_" + i, 0);
             parametrosRuedas[i].comprada = (comprada == 1) ? true : false;
         }
+
+        money = Save.Data.monedas;
     }
 }
