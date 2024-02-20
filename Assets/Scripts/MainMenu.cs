@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public AudioSource audioSource;
     public Button exitButton;
+    public Button shopButton;
     public Button muteButton;
     public Button soundButton;
     private bool isMuted = false;
@@ -43,6 +44,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
     public void PlayShop()
     {
         SceneManager.LoadScene("Tienda");
