@@ -22,6 +22,7 @@ public class Save : MonoBehaviour
         if (miInstancia == null)
         {
             miInstancia = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
