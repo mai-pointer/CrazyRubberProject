@@ -17,6 +17,9 @@ public class Personaje : MonoBehaviour
     [SerializeField] private float alturaPersonaje = 1f;
     private Rigidbody rb;
 
+    [Header("Agachar")]
+    [SerializeField] private float alturaAgachado = 1f;
+    private BoxCollider boxcolider;
 
     [Header("Controles")]
     [SerializeField] private float deslizamientoMin = 50f;
@@ -27,6 +30,7 @@ public class Personaje : MonoBehaviour
     void Update()
     {
         rb = GetComponent<Rigidbody>();
+        boxcolider = GetComponent<BoxCollider>();
 
         if (movil) Movil();
         if(pc) PC();
@@ -47,6 +51,8 @@ public class Personaje : MonoBehaviour
                 break;
             case 1:
                 //Agachar
+                rb.AddForce(Vector3.down * fuerzaSalto * 2, ForceMode.Impulse);
+                boxcolider.size = new Vector3(transform.localScale.x, alturaAgachado, transform.localScale.z);
                 break;
             case 2:
                 //Derecha
