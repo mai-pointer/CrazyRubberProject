@@ -1059,11 +1059,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Personaje
       objectReference: {fileID: 0}
-    - target: {fileID: 3570733846825423356, guid: 9c2bceb926f8c464e8bed7f573f23b76,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6129825320872363296, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: m_LocalPosition.x

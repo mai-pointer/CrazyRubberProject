@@ -116,8 +116,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3822991434538247659}
   - {fileID: 4235102389437074246}
+  - {fileID: 3822991434538247659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1052184619987602837
@@ -129,7 +129,7 @@ Rigidbody:
   m_GameObject: {fileID: 1721024695547379722}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -231,6 +231,8 @@ MonoBehaviour:
   marcadores: []
   tagMuerte: Muerte
   tagMoneda: Moneda
+  hijoSkin: 1
+  hijoEscudo: 0
 --- !u!1001 &4417083808612052141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,7 +244,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 52ad7dabeda38ad408880ebac5e29576,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52ad7dabeda38ad408880ebac5e29576,
         type: 3}
