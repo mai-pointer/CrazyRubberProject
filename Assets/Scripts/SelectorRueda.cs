@@ -36,6 +36,8 @@ public class SelectorRueda : MonoBehaviour
 
     public int money = 121;
 
+    public Image der, izq;
+
     void Start()
     {
         money = Save.Data.monedas;
@@ -72,6 +74,24 @@ public class SelectorRueda : MonoBehaviour
                     StartCoroutine(MoverRuedas(siguienteIndice));
                 }
             }
+        }
+
+        if (indiceRuedaActual == 0)
+        {
+            der.enabled = false;
+        }
+        else
+        {
+            der.enabled = true;
+        }
+
+        if (indiceRuedaActual == 4)
+        {
+            izq.enabled = false;
+        }
+        else
+        {
+            izq.enabled = true;
         }
     }
 
