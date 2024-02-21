@@ -5,6 +5,8 @@ using UnityEngine;
 public class ZiztemaDeEzkinz : MonoBehaviour
 {
     public GameObject[] ruedas;
+    public Vector3[] escalas;
+    public Vector3[] posiciones;
 
     void Awake()
     {
@@ -13,26 +15,23 @@ public class ZiztemaDeEzkinz : MonoBehaviour
             PlayerPrefs.SetInt("RuedaSeleccionada", 0);
         }
 
-        Vector3 position = transform.position; // Posición por defecto
+        int seleccion = PlayerPrefs.GetInt("RuedaSeleccionada");
 
-        // Verificar si la rueda seleccionada es la número 4 
-        if (PlayerPrefs.GetInt("RuedaSeleccionada") == 4)
+        if (seleccion >= 0 && seleccion < ruedas.Length)
         {
-            // Ajustar la posición en x si es la rueda número 4
-            position.x = -1.75f;
-        }
+            // Obtén la posición, escala y rotación correspondientes a la selección
+            Vector3 posicion = posiciones[seleccion];
+            Vector3 escala = escalas[seleccion];
+            Quaternion rotacion = ruedas[seleccion].transform.rotation;
 
-        if (PlayerPrefs.GetInt("RuedaSeleccionada") == 0)
+            // Instancia el prefab con la posición, escala y rotación ajustadas
+            GameObject ruedita = Instantiate(ruedas[seleccion], posicion, rotacion, transform);
+            ruedita.transform.localScale = escala;
+        }
+        else
         {
-            // Ajustar la posición en x si es la rueda número 4
-            position.x = 0.65f;
+            Debug.LogError("La selección de rueda está fuera de rango.");
         }
-
-        // Obtén la rotación del prefab que deseas instanciar
-        Quaternion rotation = ruedas[PlayerPrefs.GetInt("RuedaSeleccionada")].transform.rotation;
-
-        // Instancia el prefab con la misma rotación
-        GameObject ruedita = Instantiate(ruedas[PlayerPrefs.GetInt("RuedaSeleccionada")], position, rotation, transform);
     }
 
     void Update()
@@ -40,4 +39,3 @@ public class ZiztemaDeEzkinz : MonoBehaviour
 
     }
 }
-
