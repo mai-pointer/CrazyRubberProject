@@ -9,7 +9,9 @@ public class MainMenu : MonoBehaviour
     public Button shopButton;
     public Button muteButton;
     public Button soundButton;
+    public GameObject quitConfirmationPanel; // Panel de confirmación de salida
     private bool isMuted = false;
+    private bool isPaused = false;
 
     void Start()
     {
@@ -52,6 +54,31 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        // Mostrar el panel de confirmación de salida
+        quitConfirmationPanel.SetActive(true);
+    }
+
+    public void ConfirmQuit()
+    {
         Application.Quit();
+    }
+
+    public void CancelQuit()
+    {
+        // Ocultar el panel de confirmación de salida
+        quitConfirmationPanel.SetActive(false);
+    }
+
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 0f; // Pausar el juego estableciendo el tiempo a cero
+        }
+        else
+        {
+            Time.timeScale = 1f; // Reanudar el juego estableciendo el tiempo a su valor normal
+        }
     }
 }
