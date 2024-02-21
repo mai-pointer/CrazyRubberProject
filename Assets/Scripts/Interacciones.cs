@@ -122,10 +122,17 @@ public class Interacciones : MonoBehaviour
 
     public void Destruir(UIDuracion marcador)
     {
-        // **** Bajar los que esten antes que el que se va a eleminar marcador.Mover(-1) ****
+        int index = marcadores.IndexOf(marcador);
+        if (index != -1)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                StartCoroutine(marcadores[i].Mover(-1));
+            }
+        }
 
         marcadores.Remove(marcador);
-        Destroy(gameObject);
+        Destroy(marcador.gameObject);
     }
 
     private IEnumerator Esperar(PowerUp elemento, Action funcion)

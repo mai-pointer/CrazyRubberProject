@@ -21,8 +21,8 @@ public class UIDuracion : MonoBehaviour
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
 
-        float destinoY = rectTransform.anchoredPosition.y + distancia;
-        Vector3 destino = new Vector3(rectTransform.anchoredPosition.x, destinoY * direccion, 0);
+        float destinoY = rectTransform.anchoredPosition.y + (distancia * direccion);
+        Vector3 destino = new Vector3(rectTransform.anchoredPosition.x, destinoY, 0);
 
         Vector3 posicionInicial = rectTransform.localPosition;
         float tiempoPasado = 0f;
