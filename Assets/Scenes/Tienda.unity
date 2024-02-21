@@ -640,6 +640,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rueda4-100
       objectReference: {fileID: 0}
+    - target: {fileID: 3607756427674844603, guid: dd8c2aec8fb6ec543b76900e1d358f00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4132760707781404417, guid: dd8c2aec8fb6ec543b76900e1d358f00,
         type: 3}
       propertyPath: m_LocalPosition.x

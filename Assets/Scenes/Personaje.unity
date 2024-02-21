@@ -931,7 +931,7 @@ PrefabInstance:
     - target: {fileID: 2296405977284307291, guid: 3d8b65f227532c24ea3d1af0ea9acae4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.13
+      value: 11.36
       objectReference: {fileID: 0}
     - target: {fileID: 2296405977284307291, guid: 3d8b65f227532c24ea3d1af0ea9acae4,
         type: 3}
@@ -1058,6 +1058,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Personaje
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570733846825423356, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6129825320872363296, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
