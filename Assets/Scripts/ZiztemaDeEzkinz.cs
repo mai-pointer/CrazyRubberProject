@@ -8,7 +8,7 @@ public class ZiztemaDeEzkinz : MonoBehaviour
     public Vector3[] escalas;
     public Vector3[] posiciones;
 
-    void Start()
+    void Awake()
     {
         if (!PlayerPrefs.HasKey("RuedaSeleccionada"))
         {
