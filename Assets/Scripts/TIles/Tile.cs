@@ -7,7 +7,6 @@ namespace CrazyRubberProject
         [SerializeField] private GameObject[] decorationAreas;
         [SerializeField] private GameObject[] decorationAssets;
         [SerializeField] public GameObject anchorPoint;
-        [SerializeField] private GameObject decoContainer;
         [SerializeField] private int numberOfProps;
 
         public delegate void PlayerEntered(Tile myTile);
@@ -26,16 +25,21 @@ namespace CrazyRubberProject
                 GameObject selectedArea = decorationAreas[Random.Range(0, decorationAreas.Length)];
                 GameObject selectedAsset = decorationAssets[Random.Range(0, decorationAssets.Length)];
 
-                // Obtener una posición aleatoria dentro del área de decoración
-                Vector3 randomPosition = selectedArea.transform.position + new Vector3(Random.Range(-selectedArea.transform.localScale.x / 2f, selectedArea.transform.localScale.x / 2f),
-                                                                                         0f,
-                                                                                         Random.Range(-selectedArea.transform.localScale.z / 2f, selectedArea.transform.localScale.z / 2f));
-
                 // Crear una instancia del activo de decoración en la posición aleatoria
-                GameObject newDecoration = Instantiate(selectedAsset, randomPosition, Quaternion.identity);
+                GameObject newDecoration = Instantiate(selectedAsset, GetRandomPointOnPlane(selectedArea), Quaternion.identity);
                 // Asegurarse de que el activo de decoración esté dentro del área de decoración
-                newDecoration.transform.parent = decoContainer.transform;
+                newDecoration.transform.parent = selectedArea.transform;
             }
+        }
+
+        private Vector3 GetRandomPointOnPlane(GameObject plane)
+        {
+            var planeBounds = plane.GetComponent<Renderer>().bounds;
+
+            float randomX = Random.Range(planeBounds.min.x, planeBounds.max.x);
+            float randomZ = Random.Range(planeBounds.min.z, planeBounds.max.z);
+
+            return new Vector3(randomX, plane.transform.position.y, randomZ);
         }
 
         private void OnTriggerEnter(Collider other)

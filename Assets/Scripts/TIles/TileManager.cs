@@ -1,5 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CrazyRubberProject
@@ -11,15 +11,17 @@ namespace CrazyRubberProject
         [SerializeField] private GameObject tileContainer;
 
         private int tileLength = 10;
-        private int tileIndex = 0;
+        private int tileIndex;
         private int speed = 3;
-        private bool hasSpawn = false;
+        private List<Tile> currentTiles;
 
         private Tile currentTile;
 
         private void Awake()
         {
-            Tile.onPlayerEntered += SelectCurrentTile;
+            tileIndex = 0;  
+            currentTiles = new List<Tile>();
+            Tile.onPlayerEntered += UpdateTile;
         }
         void Start()
         {
@@ -32,54 +34,30 @@ namespace CrazyRubberProject
             StartCoroutine(TilesMovement());
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (CheckPlayerProximity() && !hasSpawn)
-            {
-                SpawnTile(tileIndex);
-                tileIndex++;
-            }
-        }
-
         private void SpawnTile(int newTileIndex)
         {
             Tile newTile = Instantiate(tiles[Random.Range(0, tiles.Length)]);
-            newTile.transform.position = new Vector3(0, 0, -(newTileIndex * tileLength));
+            newTile.name = newTileIndex.ToString();
             newTile.transform.SetParent(tileContainer.transform);
-
+            newTile.transform.localPosition = new Vector3(0, 0, -(newTileIndex * tileLength));
+            newTile.transform.rotation = new Quaternion(0, 0, 0, 0);
+            currentTiles.Add(newTile);
         }
 
-        private void SelectCurrentTile(Tile myTile)
+        private void RemoveTile()
         {
-            currentTile = myTile;
-            hasSpawn = false;
+            Tile tileToDelete = currentTiles[0];
+            currentTiles.RemoveAt(0);
+            Destroy(tileToDelete.gameObject);
         }
 
-        private bool CheckPlayerProximity()
-        {        
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-            if (currentTile != null && player != null)
-            {
-                float playerPos = player.transform.position.z;
-                float tileEndPoint = currentTile.anchorPoint.transform.position.z;
-
-                if (tileEndPoint - playerPos < 1)
-                {
-                    hasSpawn = true;    
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+        private void UpdateTile(Tile myTile)
+        {
+            SpawnTile(tileIndex);
+            RemoveTile();
+            tileIndex++;
         }
+
 
         IEnumerator TilesMovement()
         {
@@ -99,7 +77,7 @@ namespace CrazyRubberProject
 
         private void OnDestroy()
         {
-            Tile.onPlayerEntered -= SelectCurrentTile;
+            Tile.onPlayerEntered -= UpdateTile;
         }
     }
 }
