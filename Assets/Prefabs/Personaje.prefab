@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6129825320872363296}
-  - component: {fileID: 6105632172800662742}
+  - component: {fileID: 179194044137915412}
   - component: {fileID: 1052184619987602837}
   - component: {fileID: 8798449369419912542}
   - component: {fileID: 589509162329927360}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 5675547634036328059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6105632172800662742
+--- !u!114 &179194044137915412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56003b2090ca8fc4c98776ec247d98a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaCaminos: 2.5
+  distanciaCaminos: 0.65
   tiempoMov: 0.1
   animacion:
     serializedVersion: 2
