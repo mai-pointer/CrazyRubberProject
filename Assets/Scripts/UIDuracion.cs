@@ -17,11 +17,11 @@ public class UIDuracion : MonoBehaviour
         StartCoroutine(FadeImage());
     }
 
-    public IEnumerator Mover()
+    public IEnumerator Mover(int direccion = 1)
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
 
-        float destinoY = rectTransform.anchoredPosition.y + distancia;
+        float destinoY = rectTransform.anchoredPosition.y + (distancia * direccion);
         Vector3 destino = new Vector3(rectTransform.anchoredPosition.x, destinoY, 0);
 
         Vector3 posicionInicial = rectTransform.localPosition;
@@ -62,11 +62,6 @@ public class UIDuracion : MonoBehaviour
 
         image.fillAmount = 0f;
 
-        Destruir();
-    }
-
-    public void Destruir() {
-        interacciones.marcadores.Remove(this);
-        Destroy(gameObject);
+        interacciones.Destruir(this);
     }
 }

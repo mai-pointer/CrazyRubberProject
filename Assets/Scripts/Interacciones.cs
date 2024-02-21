@@ -105,7 +105,8 @@ public class Interacciones : MonoBehaviour
                 escudo = false;
 
                 Destroy(collision.gameObject);
-                powerUps[2].marcador.Destruir();
+
+                Destruir(powerUps[2].marcador);
                 powerUps[2].usado = false;
 
                 return;
@@ -117,6 +118,21 @@ public class Interacciones : MonoBehaviour
             Controlador.ins.Muerto();
             Debug.Log("MUERTO");
         }
+    }
+
+    public void Destruir(UIDuracion marcador)
+    {
+        int index = marcadores.IndexOf(marcador);
+        if (index != -1)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                StartCoroutine(marcadores[i].Mover(-1));
+            }
+        }
+
+        marcadores.Remove(marcador);
+        Destroy(marcador.gameObject);
     }
 
     private IEnumerator Esperar(PowerUp elemento, Action funcion)
