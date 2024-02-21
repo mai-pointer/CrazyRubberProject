@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Personaje))]
@@ -15,6 +16,7 @@ public class Interacciones : MonoBehaviour
     [Header("Principal")]
     [SerializeField] private string tagMuerte = "Muerte";
     [SerializeField] private string tagMoneda = "Moneda";
+    [SerializeField] private int hijoSkin = 1, hijoEscudo = 0;
 
     private int cantMonedas = 1;
 
@@ -25,7 +27,7 @@ public class Interacciones : MonoBehaviour
     private void Start()
     {
         BoxCollider boxcollider = GetComponent<BoxCollider>();
-        Renderer renderer = transform.GetChild(0).GetComponent<Renderer>();
+        Renderer renderer = transform.GetChild(hijoSkin).GetComponent<Renderer>();
 
         powerUps = new PowerUp[]
         {
@@ -54,7 +56,7 @@ public class Interacciones : MonoBehaviour
                 }));
             }),
             new PowerUp("Escudo", 25, (PowerUp elemento) => {
-                GameObject escudoGO = transform.GetChild(1).gameObject;
+                GameObject escudoGO = transform.GetChild(hijoEscudo).gameObject;
                 escudoGO.SetActive(true);
                 escudo = true;
 
@@ -75,6 +77,7 @@ public class Interacciones : MonoBehaviour
         {
             //Monedas
             Save.Data.monedas += cantMonedas;
+            Controlador.ins.Dinero();
         }
 
         //POWER UPS
@@ -96,7 +99,7 @@ public class Interacciones : MonoBehaviour
         {
             if (escudo)
             {
-                GameObject escudoGO = transform.GetChild(1).gameObject;
+                GameObject escudoGO = transform.GetChild(hijoEscudo).gameObject;
 
                 escudoGO.SetActive(false);
                 escudo = false;
@@ -109,6 +112,9 @@ public class Interacciones : MonoBehaviour
             }
 
             //Muerte
+            Destroy(gameObject);
+            //**** Particulas/Animacion ****
+            Controlador.ins.Muerto();
             Debug.Log("MUERTO");
         }
     }
@@ -122,6 +128,9 @@ public class Interacciones : MonoBehaviour
 
         GameObject marcador = Instantiate(prefabDuracion, posicionDuracion, Quaternion.identity);
         marcador.transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+        marcador.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = elemento.tag;
+
         UIDuracion marcadorScript = marcador.GetComponent<UIDuracion>();
         marcadorScript.tiempo = elemento.duracion;
         marcadorScript.interacciones = this;
