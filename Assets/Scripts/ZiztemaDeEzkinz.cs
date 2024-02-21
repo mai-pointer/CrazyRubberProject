@@ -6,7 +6,7 @@ public class ZiztemaDeEzkinz : MonoBehaviour
 {
     public GameObject[] ruedas;
 
-    void Start()
+    void Awake()
     {
         if (!PlayerPrefs.HasKey("RuedaSeleccionada"))
         {
