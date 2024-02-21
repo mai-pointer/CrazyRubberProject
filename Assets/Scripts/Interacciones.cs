@@ -27,25 +27,35 @@ public class Interacciones : MonoBehaviour
     private void Start()
     {
         BoxCollider boxcollider = GetComponent<BoxCollider>();
-        Renderer renderer = transform.GetChild(hijoSkin).GetComponent<Renderer>();
+        Transform hijo = transform.GetChild(hijoSkin);
+
+        List<Renderer> renderers = new();
+
+        for (int i = 0; i < hijo.childCount; i++)
+        {
+            renderers.Add(hijo.GetChild(i).GetComponent<Renderer>());
+        }
 
         powerUps = new PowerUp[]
         {
             new PowerUp("Fantasma", 5, (PowerUp elemento) => {
-                Color color = renderer.material.color;
-                color.a = 0.75f; //Opacidad
-                renderer.material.color = color;
-
-                boxcollider.isTrigger = true;
-
-                StartCoroutine(Esperar(elemento, () =>
+                foreach (var renderer in renderers)
                 {
-                    color.a = 1f;
+                    Color color = renderer.material.color;
+                    color.a = 0.75f; //Opacidad
                     renderer.material.color = color;
 
-                    boxcollider.isTrigger = false;
-                    
-                }));
+                    boxcollider.isTrigger = true;
+
+                    StartCoroutine(Esperar(elemento, () =>
+                    {
+                        color.a = 1f;
+                        renderer.material.color = color;
+
+                        boxcollider.isTrigger = false;
+
+                    }));
+                }
             }),
             new PowerUp("Multiplicador", 10, (PowerUp elemento) => {
                 cantMonedas *= 2;
@@ -105,7 +115,8 @@ public class Interacciones : MonoBehaviour
                 escudo = false;
 
                 Destroy(collision.gameObject);
-                powerUps[2].marcador.Destruir();
+
+                Destruir(powerUps[2].marcador);
                 powerUps[2].usado = false;
 
                 return;
@@ -117,6 +128,21 @@ public class Interacciones : MonoBehaviour
             Controlador.ins.Muerto();
             Debug.Log("MUERTO");
         }
+    }
+
+    public void Destruir(UIDuracion marcador)
+    {
+        int index = marcadores.IndexOf(marcador);
+        if (index != -1)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                StartCoroutine(marcadores[i].Mover(-1));
+            }
+        }
+
+        marcadores.Remove(marcador);
+        Destroy(marcador.gameObject);
     }
 
     private IEnumerator Esperar(PowerUp elemento, Action funcion)
@@ -146,7 +172,8 @@ public class Interacciones : MonoBehaviour
     }
 
     [Serializable]
-    public class PowerUp{
+    public class PowerUp
+    {
         public string tag;
         public float duracion;
         public bool usado;
