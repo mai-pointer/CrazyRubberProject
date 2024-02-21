@@ -38,6 +38,8 @@ public class SelectorRueda : MonoBehaviour
 
     void Start()
     {
+        money = Save.Data.monedas;
+
         // Posicionamos el GameObject de las ruedas en la posición inicial
         transform.position = new Vector3(-40f, transform.position.y, transform.position.z);
 
@@ -189,7 +191,5 @@ public class SelectorRueda : MonoBehaviour
             int comprada = PlayerPrefs.GetInt("RuedaComprada_" + i, 0);
             parametrosRuedas[i].comprada = (comprada == 1) ? true : false;
         }
-
-        money = Save.Data.monedas;
     }
 }
