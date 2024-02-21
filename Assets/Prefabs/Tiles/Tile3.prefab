@@ -318,7 +318,6 @@ MonoBehaviour:
   - {fileID: 5462418681280695148, guid: c75558229fdbb0b4eaedfa86a14dcf51, type: 3}
   - {fileID: 8653200099029139704, guid: 2cd97e420f86f044c999c82b179c534f, type: 3}
   anchorPoint: {fileID: 2191438085244800633}
-  decoContainer: {fileID: 4414140631484324869}
   numberOfProps: 10
 --- !u!65 &5352168466201958187
 BoxCollider:
@@ -335,7 +334,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
