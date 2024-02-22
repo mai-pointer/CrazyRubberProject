@@ -318,7 +318,6 @@ MonoBehaviour:
   - {fileID: 5462418681280695148, guid: c75558229fdbb0b4eaedfa86a14dcf51, type: 3}
   - {fileID: 8653200099029139704, guid: 2cd97e420f86f044c999c82b179c534f, type: 3}
   anchorPoint: {fileID: 2191438085244800633}
-  decoContainer: {fileID: 4414140631484324869}
   numberOfProps: 10
 --- !u!65 &5352168466201958187
 BoxCollider:
@@ -335,7 +334,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -575,6 +574,7 @@ GameObject:
   - component: {fileID: 6031024414995538933}
   - component: {fileID: 3457973667854048258}
   - component: {fileID: 1471395190814810258}
+  - component: {fileID: 6494432776131543341}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -647,6 +647,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6494432776131543341
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009354126711638071}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &298697941878812557
 PrefabInstance:
   m_ObjectHideFlags: 0

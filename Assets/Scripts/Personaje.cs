@@ -92,19 +92,6 @@ public class Personaje : MonoBehaviour
                 }));
                 break;
             case 2:
-                //Derecha
-                if (moviendo) return;
-                if (transform.position.x == distanciaCaminos) return;
-
-                StartCoroutine(
-                    Mover(new Vector3(
-                        transform.position.x + distanciaCaminos,
-                        transform.position.y,
-                        0)
-                    )
-                );
-                break;
-            case 3:
                 //Izquierda
                 if (moviendo) return;
                 if (transform.position.x == -distanciaCaminos) return;
@@ -113,7 +100,20 @@ public class Personaje : MonoBehaviour
                     Mover(new Vector3(
                         transform.position.x - distanciaCaminos,
                         transform.position.y,
-                        0)
+                        transform.position.z)
+                    )
+                );
+                break;
+            case 3:
+                //Derecha
+                if (moviendo) return;
+                if (transform.position.x == distanciaCaminos) return;
+
+                StartCoroutine(
+                    Mover(new Vector3(
+                        transform.position.x + distanciaCaminos,
+                        transform.position.y,
+                        transform.position.z)
                     )
                 );
                 break;
@@ -156,15 +156,15 @@ public class Personaje : MonoBehaviour
         float tamaño = .25f;
 
         Gizmos.DrawWireSphere(
-            new Vector3(+distanciaCaminos, altura, 0)
+            new Vector3(+distanciaCaminos, altura, transform.position.z)
             , tamaño
         );
         Gizmos.DrawWireSphere(
-            new Vector3(0, altura, 0)
+            new Vector3(0, altura, transform.position.z)
             , tamaño
         );
         Gizmos.DrawWireSphere(
-            new Vector3(-distanciaCaminos, altura, 0)
+            new Vector3(-distanciaCaminos, altura, transform.position.z)
             , tamaño
         );
     }

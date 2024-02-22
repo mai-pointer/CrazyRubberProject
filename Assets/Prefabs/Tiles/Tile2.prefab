@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 4303860649996822052}
   - component: {fileID: 5750259023559688599}
   - component: {fileID: 5261319338833317778}
+  - component: {fileID: 2618429468297847864}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -228,6 +229,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2618429468297847864
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518243215702593308}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3763068227286595799
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +422,6 @@ MonoBehaviour:
   - {fileID: 5462418681280695148, guid: c75558229fdbb0b4eaedfa86a14dcf51, type: 3}
   - {fileID: 8653200099029139704, guid: 2cd97e420f86f044c999c82b179c534f, type: 3}
   anchorPoint: {fileID: 909368536406671174}
-  decoContainer: {fileID: 152864833330344143}
   numberOfProps: 10
 --- !u!65 &3365825208630732272
 BoxCollider:
@@ -416,7 +438,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
