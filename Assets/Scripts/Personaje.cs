@@ -32,9 +32,13 @@ public class Personaje : MonoBehaviour
     private Vector2 inicialPos;
     private float alturaOriginal;
 
+    private Animator anim;
+
     private void Start()
     {
         alturaOriginal = transform.position.y;
+
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -43,15 +47,16 @@ public class Personaje : MonoBehaviour
         boxcolider = GetComponent<BoxCollider>();
 
         if (movil) Movil();
-        if(pc) PC();
+        if (pc) PC();
 
         if (transform.position.y < alturaOriginal)
         {
             rb.velocity = Vector3.zero;
-            if(rb.useGravity) rb.useGravity = false;
+            if (rb.useGravity) rb.useGravity = false;
             transform.position = new Vector3(transform.position.x, alturaOriginal, transform.position.z);
         }
-        else {
+        else
+        {
             if (!rb.useGravity) rb.useGravity = true;
         }
 
@@ -64,15 +69,19 @@ public class Personaje : MonoBehaviour
             case 0:
                 //Salto
                 RaycastHit hit;
-                
+
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
                 {
-                    rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+                    anim.SetTrigger("Salto");
+                    StartCoroutine(Esperar(0.2f, () => {
+                        rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+                    }));
                 }
                 break;
             case 1:
                 //Agachar
                 if (agachado == true) return;
+                anim.SetTrigger("Agachado");
 
                 agachado = true;
 
@@ -81,7 +90,7 @@ public class Personaje : MonoBehaviour
 
                 if (transform.position.y > 0) rb.AddForce(Vector3.down * fuerzaSalto * 2, ForceMode.Impulse);
                 boxcolider.size = new Vector3(boxcolider.size.x, alturaAgachado, boxcolider.size.z);
-                boxcolider.center = new Vector3(boxcolider.center.x, -(alturaAgachado/2), boxcolider.center.z);
+                boxcolider.center = new Vector3(boxcolider.center.x, -(alturaAgachado / 2), boxcolider.center.z);
 
                 StartCoroutine(Esperar(tiempoAgachado, () =>
                 {
@@ -92,30 +101,40 @@ public class Personaje : MonoBehaviour
                 }));
                 break;
             case 2:
-                //Derecha
-                if (moviendo) return;
-                if (transform.position.x == distanciaCaminos) return;
-
-                StartCoroutine(
-                    Mover(new Vector3(
-                        transform.position.x + distanciaCaminos,
-                        transform.position.y,
-                        0)
-                    )
-                );
-                break;
-            case 3:
                 //Izquierda
                 if (moviendo) return;
                 if (transform.position.x == -distanciaCaminos) return;
+                if (!agachado && Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
+                {
+                    anim.SetTrigger("Izquierda");
+                }
 
                 StartCoroutine(
                     Mover(new Vector3(
                         transform.position.x - distanciaCaminos,
                         transform.position.y,
-                        0)
+                        transform.position.z)
                     )
                 );
+                break;
+            case 3:
+                //Derecha
+                if (moviendo) return;
+
+                if (transform.position.x == distanciaCaminos) return;
+                if (!agachado && Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
+                {
+                    anim.SetTrigger("Derecha");
+                }
+
+                StartCoroutine(
+                    Mover(new Vector3(
+                        transform.position.x + distanciaCaminos,
+                        transform.position.y,
+                        transform.position.z)
+                    )
+                );
+
                 break;
         }
     }
@@ -152,19 +171,18 @@ public class Personaje : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * alturaPersonaje);
 
         //Caminos
-        float altura = .5f;
         float tamaño = .25f;
 
         Gizmos.DrawWireSphere(
-            new Vector3(+distanciaCaminos, altura, 0)
+            new Vector3(+distanciaCaminos, transform.position.y, transform.position.z)
             , tamaño
         );
         Gizmos.DrawWireSphere(
-            new Vector3(0, altura, 0)
+            new Vector3(0, transform.position.y, transform.position.z)
             , tamaño
         );
         Gizmos.DrawWireSphere(
-            new Vector3(-distanciaCaminos, altura, 0)
+            new Vector3(-distanciaCaminos, transform.position.y, transform.position.z)
             , tamaño
         );
     }
@@ -231,4 +249,4 @@ public class Personaje : MonoBehaviour
         yield return new WaitForSeconds(tiempo);
         funcion?.Invoke();
     }
-}
+}                                                                                       
