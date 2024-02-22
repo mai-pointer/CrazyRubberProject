@@ -19,7 +19,7 @@ namespace CrazyRubberProject
 
         private void Awake()
         {
-            tileIndex = 0;  
+            tileIndex = -2;  
             currentTiles = new List<Tile>();
             Tile.onPlayerEntered += UpdateTile;
         }
