@@ -54,7 +54,8 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        // Mostrar el panel de confirmación de salida
+        // Mostrar el panel de confirmación de salida y pausar juego
+        PauseGame();
         quitConfirmationPanel.SetActive(true);
     }
 
