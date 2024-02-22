@@ -38,6 +38,9 @@ public class SelectorRueda : MonoBehaviour
 
     public Image der, izq;
 
+    public AudioClip cambioRuedaSound; // Variable para el sonido de cambio de rueda
+    public AudioSource audioSource; // Variable para el AudioSource
+
     void Start()
     {
         money = Save.Data.monedas;
@@ -50,6 +53,7 @@ public class SelectorRueda : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.touchCount > 0 && !enMovimiento)
         {
             Touch touch = Input.GetTouch(0);
@@ -68,10 +72,16 @@ public class SelectorRueda : MonoBehaviour
                     int direccion = (distanciaX > 0) ? 1 : -1;
                     int siguienteIndice = Mathf.Clamp(indiceRuedaActual + direccion, 0, ruedas.Length - 1);
 
-                    // Mostrar los datos de la rueda que coincide con el índice actual
-                    CompararIndices(indiceRuedaActual);
+                    if (siguienteIndice != indiceRuedaActual)
+                    {
+                        // Reproducir el sonido de cambio de rueda al inicio (solo si la rueda actual no está en el primer índice)
+                        if (indiceRuedaActual != 0 && cambioRuedaSound != null && audioSource != null)
+                        {
+                            audioSource.PlayOneShot(cambioRuedaSound);
+                        }
 
-                    StartCoroutine(MoverRuedas(siguienteIndice));
+                        StartCoroutine(MoverRuedas(siguienteIndice));
+                    }
                 }
             }
         }
@@ -99,6 +109,12 @@ public class SelectorRueda : MonoBehaviour
     {
         enMovimiento = true;
         Vector3 posicionDestino = new Vector3(-40f + siguienteIndice * separacionEntreRuedas, transform.position.y, transform.position.z);
+
+        // Reproducir el sonido de cambio de rueda al comenzar a moverse
+        if (cambioRuedaSound != null && audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(cambioRuedaSound);
+        }
 
         while (transform.position != posicionDestino)
         {

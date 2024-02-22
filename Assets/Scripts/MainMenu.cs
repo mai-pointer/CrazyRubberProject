@@ -44,7 +44,11 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
+    }
+    public void RetryGame()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
     public void PlayShop()
@@ -54,8 +58,11 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        // Mostrar el panel de confirmación de salida
+        // Mostrar el panel de confirmación de salida y pausar juego
+        PauseGame();
         quitConfirmationPanel.SetActive(true);
+        // Desactivar el botón de salir
+        exitButton.gameObject.SetActive(false);
     }
 
     public void ConfirmQuit()
@@ -65,8 +72,11 @@ public class MainMenu : MonoBehaviour
 
     public void CancelQuit()
     {
-        // Ocultar el panel de confirmación de salida
+        // Ocultar el panel de confirmación de salida y reanudar juego
+        PauseGame();
         quitConfirmationPanel.SetActive(false);
+        // Activar el botón de salir
+        exitButton.gameObject.SetActive(true);
     }
 
     public void PauseGame()
