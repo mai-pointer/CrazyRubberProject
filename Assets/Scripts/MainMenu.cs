@@ -57,6 +57,8 @@ public class MainMenu : MonoBehaviour
         // Mostrar el panel de confirmación de salida y pausar juego
         PauseGame();
         quitConfirmationPanel.SetActive(true);
+        // Desactivar el botón de salir
+        exitButton.gameObject.SetActive(false);
     }
 
     public void ConfirmQuit()
@@ -66,8 +68,11 @@ public class MainMenu : MonoBehaviour
 
     public void CancelQuit()
     {
-        // Ocultar el panel de confirmación de salida
+        // Ocultar el panel de confirmación de salida y reanudar juego
+        PauseGame();
         quitConfirmationPanel.SetActive(false);
+        // Activar el botón de salir
+        exitButton.gameObject.SetActive(true);
     }
 
     public void PauseGame()
