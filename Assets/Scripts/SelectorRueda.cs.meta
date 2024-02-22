@@ -3,7 +3,15 @@ guid: c627e9ead86f30e42b43803997369b42
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - txtPrecio: {instanceID: 0}
+  - txtNombre: {instanceID: 0}
+  - botonSelect: {instanceID: 0}
+  - txtBoton: {instanceID: 0}
+  - der: {instanceID: 0}
+  - izq: {instanceID: 0}
+  - cambioRuedaSound: {fileID: 8300000, guid: 0e926c4c546256b419323909ea97619a, type: 3}
+  - audioSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
