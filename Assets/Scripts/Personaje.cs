@@ -73,9 +73,9 @@ public class Personaje : MonoBehaviour
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
                 {
                     anim.SetTrigger("Salto");
-                    StartCoroutine(Esperar(0.2f, () => {
+                    //StartCoroutine(Esperar(0.2f, () => {
                         rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
-                    }));
+                    //}));
                 }
                 break;
             case 1:
