@@ -44,7 +44,11 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
+    }
+    public void RetryGame()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
     public void PlayShop()
