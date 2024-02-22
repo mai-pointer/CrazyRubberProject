@@ -171,19 +171,19 @@ public class Personaje : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * alturaPersonaje);
 
         //Caminos
-        float tama�o = .25f;
+        float tamaño = .25f;
 
         Gizmos.DrawWireSphere(
             new Vector3(+distanciaCaminos, transform.position.y, transform.position.z)
-            , tama�o
+            , tamaño
         );
         Gizmos.DrawWireSphere(
             new Vector3(0, transform.position.y, transform.position.z)
-            , tama�o
+            , tamaño
         );
         Gizmos.DrawWireSphere(
             new Vector3(-distanciaCaminos, transform.position.y, transform.position.z)
-            , tama�o
+            , tamaño
         );
     }
 
