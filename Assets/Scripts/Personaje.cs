@@ -120,19 +120,6 @@ public class Personaje : MonoBehaviour
             case 3:
                 //Derecha
                 if (moviendo) return;
-                if (transform.position.x == distanciaCaminos) return;
-
-                StartCoroutine(
-                    Mover(new Vector3(
-                        transform.position.x + distanciaCaminos,
-                        transform.position.y,
-                        transform.position.z)
-                    )
-                );
-                break;
-            case 3:
-                //Derecha
-                if (moviendo) return;
 
                 if (transform.position.x == distanciaCaminos) return;
                 if (!agachado && Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
