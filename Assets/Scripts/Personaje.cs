@@ -59,7 +59,6 @@ public class Personaje : MonoBehaviour
         {
             if (!rb.useGravity) rb.useGravity = true;
         }
-
     }
 
     private void Dirigir(int index)
