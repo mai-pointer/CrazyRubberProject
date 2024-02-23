@@ -15,10 +15,13 @@ namespace CrazyRubberProject
         private int speed = 3;
         private List<Tile> currentTiles;
 
+        public int difficultyLevel { get;  private set; }
+
         private Tile currentTile;
 
         private void Awake()
         {
+            difficultyLevel = 0;
             tileIndex = -2;  
             currentTiles = new List<Tile>();
             Tile.onPlayerEntered += UpdateTile;
@@ -42,6 +45,7 @@ namespace CrazyRubberProject
             newTile.transform.localPosition = new Vector3(0, 0, -(newTileIndex * tileLength));
             newTile.transform.rotation = new Quaternion(0, 0, 0, 0);
             currentTiles.Add(newTile);
+            DifficultyManager();
         }
 
         private void RemoveTile()
@@ -78,6 +82,29 @@ namespace CrazyRubberProject
         private void OnDestroy()
         {
             Tile.onPlayerEntered -= UpdateTile;
+        }
+
+        private void DifficultyManager()
+        {
+            switch (tileIndex)
+            {
+                case int n when n >= 0 && n <= 1:
+                    difficultyLevel = 0;
+                    break;
+                case int n when n >= 2 && n <= 10:
+                    difficultyLevel = 1;
+                    break;
+                case int n when n >= 11 && n <= 50:
+                    difficultyLevel = 2;
+                    break;
+                case int n when n >= 51 && n <= 100:
+                    difficultyLevel = 3;
+                    break;
+                default:
+                    difficultyLevel = 4;
+                    break;
+
+            }
         }
     }
 }

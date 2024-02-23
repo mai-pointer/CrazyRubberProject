@@ -9,6 +9,7 @@ TagManager:
   - Fantasma
   - Escudo
   - Multiplicador
+  - AnchorPoints
   layers:
   - Default
   - TransparentFX
