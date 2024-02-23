@@ -3840,6 +3840,11 @@ PrefabInstance:
       propertyPath: alturaPersonaje
       value: 0.53
       objectReference: {fileID: 0}
+    - target: {fileID: 7776052841961935772, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: fantasma
+      value: 
+      objectReference: {fileID: 2100000, guid: ed6d265ee04905a4e9e361bd9efb82be, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
