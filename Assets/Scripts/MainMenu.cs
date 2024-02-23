@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public Button muteButton;
     public Button soundButton;
     public GameObject quitConfirmationPanel; // Panel de confirmación de salida
+    public GameObject instructionPanel;
     private bool isMuted = false;
     private bool isPaused = false;
 
@@ -63,6 +64,18 @@ public class MainMenu : MonoBehaviour
         quitConfirmationPanel.SetActive(true);
         // Desactivar el botón de salir
         exitButton.gameObject.SetActive(false);
+    }
+
+    public void ShowInstructions()
+    {
+        instructionPanel.SetActive(true);
+        // Desactivar el botón de salir
+        exitButton.gameObject.SetActive(false);
+    }
+    public void QuitIntructions()
+    {
+        instructionPanel.SetActive(false);
+        exitButton.gameObject.SetActive(true);
     }
 
     public void ConfirmQuit()
