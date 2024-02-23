@@ -21,8 +21,10 @@ public class Interacciones : MonoBehaviour
     private int cantMonedas = 1;
 
     [Header("Power ups")]
+    [SerializeField] private Material fantasma;
     private PowerUp[] powerUps;
     private bool escudo;
+
 
     private void Start()
     {
@@ -41,27 +43,26 @@ public class Interacciones : MonoBehaviour
             new PowerUp("Fantasma", 5, (PowerUp elemento) => {
                 foreach (var renderer in renderers)
                 {
-                    Color color = renderer.material.color;
-                    color.a = 0.75f; //Opacidad
-                    renderer.material.color = color;
+                    Material original = renderer.material;
+                    renderer.material = fantasma;
 
                     boxcollider.isTrigger = true;
 
                     StartCoroutine(Esperar(elemento, () =>
                     {
-                        color.a = 1f;
-                        renderer.material.color = color;
-
+                        renderer.material = original;
                         boxcollider.isTrigger = false;
 
                     }));
                 }
             }),
             new PowerUp("Multiplicador", 10, (PowerUp elemento) => {
+                GetComponent<Outline>().enabled = true;
                 cantMonedas *= 2;
 
                 StartCoroutine(Esperar(elemento, () =>
                 {
+                    GetComponent<Outline>().enabled = false;
                     cantMonedas /= 2;
                 }));
             }),
