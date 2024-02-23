@@ -124,9 +124,9 @@ public class Interacciones : MonoBehaviour
             }
 
             //Muerte
+            Controlador.ins.Muerto();
             Destroy(gameObject);
             //**** Particulas/Animacion ****
-            Controlador.ins.Muerto();
             Debug.Log("MUERTO");
         }
     }

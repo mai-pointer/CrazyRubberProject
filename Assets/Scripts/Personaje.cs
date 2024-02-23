@@ -71,7 +71,7 @@ public class Personaje : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
                 {
-                    anim.SetTrigger("Salto");
+                    //anim.SetTrigger("Salto");
                     //StartCoroutine(Esperar(0.2f, () => {
                         rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
                     //}));
@@ -80,7 +80,7 @@ public class Personaje : MonoBehaviour
             case 1:
                 //Agachar
                 if (agachado == true) return;
-                anim.SetTrigger("Agachado");
+                //anim.SetTrigger("Agachado");
 
                 agachado = true;
 
@@ -105,7 +105,7 @@ public class Personaje : MonoBehaviour
                 if (transform.position.x == -distanciaCaminos) return;
                 if (!agachado && Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
                 {
-                    anim.SetTrigger("Izquierda");
+                    //anim.SetTrigger("Izquierda");
                 }
 
                 StartCoroutine(
@@ -123,7 +123,7 @@ public class Personaje : MonoBehaviour
                 if (transform.position.x == distanciaCaminos) return;
                 if (!agachado && Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
                 {
-                    anim.SetTrigger("Derecha");
+                    //anim.SetTrigger("Derecha");
                 }
 
                 StartCoroutine(

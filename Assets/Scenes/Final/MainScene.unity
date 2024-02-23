@@ -2715,6 +2715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntuacionTxt: {fileID: 1104050553}
   dineroTxt: {fileID: 1175069865}
+  MenuMuerte: {fileID: 708040841}
 --- !u!4 &1497258116
 Transform:
   m_ObjectHideFlags: 0
@@ -3720,6 +3721,7 @@ MonoBehaviour:
   muteButton: {fileID: 427688518}
   soundButton: {fileID: 427688518}
   quitConfirmationPanel: {fileID: 1106383250}
+  instructionPanel: {fileID: 0}
 --- !u!4 &2084683682
 Transform:
   m_ObjectHideFlags: 0

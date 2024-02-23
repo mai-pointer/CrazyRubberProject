@@ -6,6 +6,7 @@ using TMPro;
 public class Controlador : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI puntuacionTxt, dineroTxt;
+    [SerializeField] private GameObject MenuMuerte;
 
     private float puntuacion = 0f;
     public static Controlador ins;
@@ -34,7 +35,6 @@ public class Controlador : MonoBehaviour
     public void Muerto() 
     {
         if (Save.Data.mejor_puntuacion < puntuacion) Save.Data.mejor_puntuacion = puntuacion;
-        
-        //*** MenuMuerte/Cambio a menu principal ***
+        MenuMuerte.SetActive(true);
     }
 }
