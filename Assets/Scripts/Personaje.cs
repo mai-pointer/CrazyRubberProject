@@ -73,14 +73,15 @@ public class Personaje : MonoBehaviour
                 {
                     //anim.SetTrigger("Salto");
                     //StartCoroutine(Esperar(0.2f, () => {
-                        rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+                    agachado = false;
+                    rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
                     //}));
                 }
                 break;
             case 1:
                 //Agachar
                 if (agachado == true) return;
-                //anim.SetTrigger("Agachado");
+                anim.SetTrigger("Agachado");
 
                 agachado = true;
 
