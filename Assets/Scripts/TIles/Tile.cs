@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace CrazyRubberProject
 {
@@ -15,16 +16,16 @@ namespace CrazyRubberProject
         [SerializeField] private int numberOfProps;
 
         private TileManager tileManager;
-        private List<List<GameObject>> obstacleAnchorPoints;
-        List<List<bool>> occupiedPositions = new List<List<bool>>();
+        private List<List<GameObject>> obstacleAnchorPoints = new List<List<GameObject>>();
+        private List<List<bool>> occupiedPositions = new List<List<bool>>();
 
         public delegate void PlayerEntered(Tile myTile);
         public static event PlayerEntered onPlayerEntered;
 
         private void OnEnable()
         {
-            ObtainAnchors();
             tileManager = FindObjectOfType<TileManager>();
+            ObtainAnchors();
             DecorateTile();
             SetObstacles();
         }
@@ -49,7 +50,7 @@ namespace CrazyRubberProject
 
             for (int i = 0; i < tileManager.difficultyLevel; i++)
             {
-                Obstacle selectedObstacle = obstacles[Random.Range(0, decorationAreas.Length)];
+                Obstacle selectedObstacle = obstacles[Random.Range(0, obstacles.Length)];
 
                 List<int> abailablePos = AbailablePositionCheck(selectedObstacle);
 
@@ -65,8 +66,33 @@ namespace CrazyRubberProject
                 } while (PosAbailable(selectedObstacle, randomRow, randomCol));
                 
 
-                PositionHandler(selectedObstacle, randomCol, randomRow);
+                PositionHandler(selectedObstacle, randomRow, randomCol);
+
+                Obstacle newObstacle = Instantiate(selectedObstacle, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObstacles(selectedObstacle, randomCol));
+                newObstacle.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;
             }
+        }
+
+        private Quaternion RotateObstacles(Obstacle obstacle, int randomCol)
+        {
+            Quaternion rotation = Quaternion.Euler(0, 180, 0);
+            Quaternion noRotation = Quaternion.Euler(0, 0, 0);
+
+            Quaternion[] rotations = { rotation, noRotation };
+            Quaternion selectedRotation = Quaternion.identity;
+            if (!obstacle.canRotate)
+            {
+                if (randomCol == 4)
+                {
+                    selectedRotation = rotation;
+                }
+            }
+            else
+            {
+                selectedRotation = rotations[Random.Range(0, rotations.Length)];
+            }
+
+            return selectedRotation;
         }
 
         private Vector3 GetRandomPointOnPlane(GameObject plane)
@@ -92,15 +118,19 @@ namespace CrazyRubberProject
             for (int i = 0; i < obstacleAnchors.Length; i++)
             {
                 List<GameObject> myList = new List<GameObject>();
+                List<bool> myPosList = new List<bool>();
+
                 for (int j = 0; j < obstacleAnchors[i].transform.childCount; j++)
                 {
                     Transform childTransform = obstacleAnchors[i].transform.GetChild(j);
                     GameObject childGameObject = childTransform.gameObject;
 
                     myList.Add(childGameObject);
+                    myPosList.Add(false);
                 }
 
                 obstacleAnchorPoints.Add(myList);
+                occupiedPositions.Add(myPosList);
             }
 
         }
@@ -121,26 +151,26 @@ namespace CrazyRubberProject
 
         private void PositionHandler(Obstacle obstacle, int randomRow, int randomCol)
         {
-            occupiedPositions[randomRow][randomCol] = true;
+            occupiedPositions[randomCol][randomRow] = true;
 
             if (obstacle.size == 1)
             {
 
                 if (randomCol != 0)
                 {
-                    occupiedPositions[randomRow][randomCol - 1] = true;
+                    occupiedPositions[randomCol - 1][randomRow] = true;
                 }
-                if (randomCol != 8)
+                if (randomCol != 4)
                 {
-                    occupiedPositions[randomRow][randomCol + 1] = true;
+                    occupiedPositions[randomCol + 1][randomRow] = true;
                 }
                 if (randomRow != 0)
                 {
-                    occupiedPositions[randomRow - 1][randomCol] = true;
+                    occupiedPositions[randomCol][randomRow - 1] = true;
                 }
                 if (randomRow != 8)
                 {
-                    occupiedPositions[randomRow + 1][randomCol] = true;
+                    occupiedPositions[randomCol][randomRow + 1] = true;
                 }
 
             }
@@ -148,21 +178,21 @@ namespace CrazyRubberProject
             {
                 for (int i = 0; i <= 4; i++)
                 {
-                    occupiedPositions[randomRow][i] = true;
+                    occupiedPositions[i][randomRow] = true;
                 }
 
                 if (randomRow != 0)
                 {
-                    occupiedPositions[randomRow - 1][randomCol] = true;
-                    occupiedPositions[randomRow - 1][randomCol + 1] = true;
-                    occupiedPositions[randomRow - 1][randomCol - 1] = true;
+                    occupiedPositions[randomCol][randomRow - 1] = true;
+                    occupiedPositions[randomCol + 1][randomRow - 1] = true;
+                    occupiedPositions[randomCol - 1][randomRow - 1] = true;
 
                 }
                 if (randomRow != 8)
                 {
-                    occupiedPositions[randomRow + 1][randomCol] = true;
-                    occupiedPositions[randomRow + 1][randomCol + 1] = true;
-                    occupiedPositions[randomRow + 1][randomCol - 1] = true;
+                    occupiedPositions[randomCol][randomRow + 1] = true;
+                    occupiedPositions[randomCol + 1][randomRow + 1] = true;
+                    occupiedPositions[randomCol - 1][randomRow + 1] = true;
                 }
 
             }
@@ -171,14 +201,14 @@ namespace CrazyRubberProject
 
                 for (int i = 0; i <= 4; i++)
                 {
-                    occupiedPositions[randomRow][i] = true;
+                    occupiedPositions[i][randomRow] = true;
                 }
 
                 if (randomRow != 0)
                 {
                     for (int i = 0; i <= 4; i++)
                     {
-                        occupiedPositions[randomRow - 1][i] = true;
+                        occupiedPositions[i][randomRow - 1] = true;
                     }
 
                 }
@@ -186,7 +216,7 @@ namespace CrazyRubberProject
                 {
                     for (int i = 0; i <= 4; i++)
                     {
-                        occupiedPositions[randomRow + 1][i] = true;
+                        occupiedPositions[i][randomRow + 1] = true;
                     }
                 }
             }
@@ -194,28 +224,31 @@ namespace CrazyRubberProject
 
         private bool PosAbailable(Obstacle obstacle, int randomRow, int randomCol)
         {
-            bool isOccupied = false;
+            foreach (List<bool> list in occupiedPositions)
+            {
+                Debug.Log("Lsta: " + list.Count);
+            }
 
-            if (occupiedPositions[randomRow][randomCol]) { return true; }
+            if (occupiedPositions[randomCol][randomRow]) { return true; }
 
             if (obstacle.size == 1)
             {
 
                 if (randomCol != 0)
                 {
-                    if (occupiedPositions[randomRow][randomCol - 1]) { return true; }
+                    if (occupiedPositions[randomCol - 1][randomRow]) { return true; }
                 }
-                if (randomCol != 8)
+                if (randomCol != 4)
                 {
-                    if (occupiedPositions[randomRow][randomCol + 1]) { return true; }
+                    if (occupiedPositions[randomCol + 1][randomRow]) { return true; }
                 }
                 if (randomRow != 0)
                 {
-                    if (occupiedPositions[randomRow - 1][randomCol]) { return true; }
+                    if (occupiedPositions[randomCol][randomRow - 1]) { return true; }
                 }
                 if (randomRow != 8)
                 {
-                    if (occupiedPositions[randomRow + 1][randomCol]) { return true; }
+                    if (occupiedPositions[randomCol][randomRow + 1]) { return true; }
                 }
 
             }
@@ -223,7 +256,7 @@ namespace CrazyRubberProject
             {
                 for (int i = 0; i <= 4; i++)
                 {
-                    if (occupiedPositions[randomRow][i] == true)
+                    if (occupiedPositions[i][randomRow] == true)
                     {
                         return true;
                     }
@@ -231,16 +264,16 @@ namespace CrazyRubberProject
 
                 if (randomRow != 0)
                 {
-                    if (occupiedPositions[randomRow - 1][randomCol]) { return true; }
-                    if (occupiedPositions[randomRow - 1][randomCol]) { return true; }
-                    if (occupiedPositions[randomRow - 1][randomCol - 1]) { return true; }
+                    if (occupiedPositions[randomCol][randomRow - 1]) { return true; }
+                    if (occupiedPositions[randomCol][randomRow - 1]) { return true; }
+                    if (occupiedPositions[randomCol - 1][randomRow - 1]) { return true; }
 
                 }
                 if (randomRow != 8)
                 {
-                    if (occupiedPositions[randomRow + 1][randomCol]) { return true; }
-                    if (occupiedPositions[randomRow + 1][randomCol]) { return true; }
-                    if (occupiedPositions[randomRow + 1][randomCol - 1]) { return true; }
+                    if (occupiedPositions[randomCol][randomRow + 1]) { return true; }
+                    if (occupiedPositions[randomCol][randomRow + 1]) { return true; }
+                    if (occupiedPositions[randomCol - 1][randomRow + 1]) { return true; }
                 }
 
             }
@@ -249,7 +282,7 @@ namespace CrazyRubberProject
 
                 for (int i = 0; i <= 4; i++)
                 {
-                    if (occupiedPositions[randomRow][i] == true)
+                    if (occupiedPositions[i][randomRow] == true)
                     {
                         return true;
                     }
@@ -259,7 +292,7 @@ namespace CrazyRubberProject
                 {
                     for (int i = 0; i <= 4; i++)
                     {
-                        if (occupiedPositions[randomRow-1][i] == true)
+                        if (occupiedPositions[i][randomRow-1] == true)
                         {
                             return true;
                         }
@@ -270,7 +303,7 @@ namespace CrazyRubberProject
                 {
                     for (int i = 0; i <= 4; i++)
                     {
-                        if (occupiedPositions[randomRow+1][i] == true)
+                        if (occupiedPositions[i][randomRow+1] == true)
                         {
                             return true;
                         }

@@ -45,6 +45,7 @@ namespace CrazyRubberProject
             newTile.transform.localPosition = new Vector3(0, 0, -(newTileIndex * tileLength));
             newTile.transform.rotation = new Quaternion(0, 0, 0, 0);
             currentTiles.Add(newTile);
+            DifficultyManager();
         }
 
         private void RemoveTile()
