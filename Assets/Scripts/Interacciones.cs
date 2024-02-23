@@ -57,10 +57,12 @@ public class Interacciones : MonoBehaviour
                 }
             }),
             new PowerUp("Multiplicador", 10, (PowerUp elemento) => {
+                GetComponent<Outline>().enabled = true;
                 cantMonedas *= 2;
 
                 StartCoroutine(Esperar(elemento, () =>
                 {
+                    GetComponent<Outline>().enabled = false;
                     cantMonedas /= 2;
                 }));
             }),

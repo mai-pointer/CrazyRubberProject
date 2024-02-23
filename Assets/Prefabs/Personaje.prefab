@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5660927204464916822}
   - component: {fileID: 7776052841961935772}
   - component: {fileID: 8379133946566630776}
+  - component: {fileID: 6519609478520500242}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Player
@@ -124,8 +125,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   fuerzaSalto: 4
-  alturaPersonaje: 0.2
-  alturaAgachado: 0.5
+  alturaPersonaje: 0.53
+  alturaAgachado: 2
   tiempoAgachado: 1
   deslizamientoMin: 50
   movil: 1
@@ -150,6 +151,7 @@ MonoBehaviour:
   tagMoneda: Moneda
   hijoSkin: 1
   hijoEscudo: 0
+  fantasma: {fileID: 2100000, guid: ed6d265ee04905a4e9e361bd9efb82be, type: 2}
 --- !u!114 &8379133946566630776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +170,27 @@ MonoBehaviour:
   - {fileID: 1412757310004509472, guid: dfcc3f903e6ff604989d190c6aba1f0c, type: 3}
   - {fileID: 3614142017661564039, guid: 366310e192a469243834b78f6d4d12c8, type: 3}
   - {fileID: 5535880793639559158, guid: 9cba92c93c5368b47a8f4b335984bc74, type: 3}
+--- !u!95 &6519609478520500242
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741780467707069952}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca5e8f4f699e14e47bc2a4fd98ec0a48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3594705941053936017
 GameObject:
   m_ObjectHideFlags: 0
