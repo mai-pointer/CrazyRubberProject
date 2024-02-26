@@ -47,6 +47,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void PlayMenu()
+    {
+        SceneManager.LoadScene("UIMainMenu");
+    }
     public void RetryGame()
     {
         SceneManager.LoadScene("MainScene");
