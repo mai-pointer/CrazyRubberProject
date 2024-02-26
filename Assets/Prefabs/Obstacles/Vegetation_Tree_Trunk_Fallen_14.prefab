@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -1545083127514517159}
   m_Layer: 0
   m_Name: Vegetation_Tree_Trunk_Fallen_14
-  m_TagString: Untagged
+  m_TagString: Muerte
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,3 +231,4 @@ MonoBehaviour:
   availablePositions: 0100000001
   canRotate: 0
   size: 3
+  value: 0

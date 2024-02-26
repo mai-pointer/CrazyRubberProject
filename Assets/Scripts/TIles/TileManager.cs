@@ -17,8 +17,6 @@ namespace CrazyRubberProject
 
         public int difficultyLevel { get;  private set; }
 
-        private Tile currentTile;
-
         private void Awake()
         {
             difficultyLevel = 0;
@@ -30,19 +28,19 @@ namespace CrazyRubberProject
         {
             for (int i = 0; i < numberOfTiles; i++)
             {
-                SpawnTile(tileIndex);
+                SpawnTile();
                 tileIndex++;
             }
 
             StartCoroutine(TilesMovement());
         }
 
-        private void SpawnTile(int newTileIndex)
+        private void SpawnTile()
         {
             Tile newTile = Instantiate(tiles[Random.Range(0, tiles.Length)]);
-            newTile.name = newTileIndex.ToString();
+            newTile.name = tileIndex.ToString();
             newTile.transform.SetParent(tileContainer.transform);
-            newTile.transform.localPosition = new Vector3(0, 0, -(newTileIndex * tileLength));
+            newTile.transform.localPosition = new Vector3(0, 0, -(tileIndex * tileLength));
             newTile.transform.rotation = new Quaternion(0, 0, 0, 0);
             currentTiles.Add(newTile);
             DifficultyManager();
@@ -57,7 +55,7 @@ namespace CrazyRubberProject
 
         private void UpdateTile(Tile myTile)
         {
-            SpawnTile(tileIndex);
+            SpawnTile();
             RemoveTile();
             tileIndex++;
         }
@@ -88,10 +86,10 @@ namespace CrazyRubberProject
         {
             switch (tileIndex)
             {
-                case int n when n >= 0 && n <= 1:
+                case int n when n >= -2 && n <= 3:
                     difficultyLevel = 0;
                     break;
-                case int n when n >= 2 && n <= 10:
+                case int n when n >= 4 && n <= 10:
                     difficultyLevel = 1;
                     break;
                 case int n when n >= 11 && n <= 50:

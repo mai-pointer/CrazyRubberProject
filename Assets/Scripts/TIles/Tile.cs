@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace CrazyRubberProject
 {
@@ -11,13 +8,17 @@ namespace CrazyRubberProject
         [SerializeField] private GameObject[] decorationAreas;
         [SerializeField] private GameObject[] decorationAssets;
         [SerializeField] private GameObject[] obstacleAnchors;
-        [SerializeField] private Obstacle[] obstacles;
+        [SerializeField] private TileObject[] obstacles;
+        [SerializeField] private TileObject[] collectibles;
         [SerializeField] public GameObject anchorPoint;
         [SerializeField] private int numberOfProps;
 
         private TileManager tileManager;
         private List<List<GameObject>> obstacleAnchorPoints;
         private List<List<bool>> occupiedPositions;
+        private int gemAmount;
+        private int columnAmount = 4;
+        private int rowAmount = 8;
 
         public delegate void PlayerEntered(Tile myTile);
         public static event PlayerEntered onPlayerEntered;
@@ -27,34 +28,34 @@ namespace CrazyRubberProject
             obstacleAnchorPoints = new List<List<GameObject>>();
             occupiedPositions = new List<List<bool>>();
             tileManager = FindObjectOfType<TileManager>();
+            gemAmount = Random.Range(1, 5);
+
             ObtainAnchors();
             DecorateTile();
-            SetObstacles();
+            SetObjects(obstacles, tileManager.difficultyLevel);
+            SetObjects(collectibles, gemAmount);
         }
 
         private void DecorateTile()
         {
             for (int i = 0; i < numberOfProps; i++)
             {
-                // Elegir aleatoriamente un área de decoración y un activo de decoración
                 GameObject selectedArea = decorationAreas[Random.Range(0, decorationAreas.Length)];
                 GameObject selectedAsset = decorationAssets[Random.Range(0, decorationAssets.Length)];
 
-                // Crear una instancia del activo de decoración en la posición aleatoria
                 GameObject newDecoration = Instantiate(selectedAsset, GetRandomPointOnPlane(selectedArea), Quaternion.identity);
-                // Asegurarse de que el activo de decoración esté dentro del área de decoración
                 newDecoration.transform.parent = selectedArea.transform;
             }
         }
 
-        private void SetObstacles()
+        private void SetObjects(TileObject[] objects, int amount)
         {
 
-            for (int i = 0; i < tileManager.difficultyLevel; i++)
+            for (int i = 0; i < amount; i++)
             {
-                Obstacle selectedObstacle = obstacles[Random.Range(0, obstacles.Length)];
+                TileObject selectedObj = objects[Random.Range(0, objects.Length)];
 
-                List<int> abailablePos = AbailablePositionCheck(selectedObstacle);
+                List<int> abailablePos = AbailablePositionCheck(selectedObj);
 
                 int randomCol;
                 int randomRow;
@@ -67,17 +68,18 @@ namespace CrazyRubberProject
                     randomRow = Random.Range(0, 8);
                     currentAttemps++;
 
-                } while (PosAbailable(selectedObstacle, randomRow, randomCol) && currentAttemps<maxAttemps);
+                } while (PosAbailable(selectedObj, randomRow, randomCol) && currentAttemps<maxAttemps);
                 
 
-                PositionHandler(selectedObstacle, randomRow, randomCol);
+                PositionHandler(selectedObj, randomRow, randomCol);
 
-                Obstacle newObstacle = Instantiate(selectedObstacle, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObstacles(selectedObstacle, randomCol));
-                newObstacle.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;
+                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
+                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;
             }
         }
 
-        private Quaternion RotateObstacles(Obstacle obstacle, int randomCol)
+
+        private Quaternion RotateObj(TileObject obstacle, int randomCol)
         {
             Quaternion rotation = Quaternion.Euler(0, 180, 0);
             Quaternion noRotation = Quaternion.Euler(0, 0, 0);
@@ -113,6 +115,7 @@ namespace CrazyRubberProject
         {
             if (other.CompareTag("Player"))
             {
+                Debug.Log(other.name);
                 onPlayerEntered?.Invoke(this);
             }
         }
@@ -139,7 +142,7 @@ namespace CrazyRubberProject
 
         }
 
-        private List<int> AbailablePositionCheck(Obstacle myObstacle)
+        private List<int> AbailablePositionCheck(TileObject myObstacle)
         {
             List<int> myPositions = new List<int>();
             for (int i = 0; i < myObstacle.availablePositions.Length; i++)
@@ -153,7 +156,7 @@ namespace CrazyRubberProject
             return myPositions;
         }
 
-        private void PositionHandler(Obstacle obstacle, int randomRow, int randomCol)
+        private void PositionHandler(TileObject obstacle, int randomRow, int randomCol)
         {
             occupiedPositions[randomCol][randomRow] = true;
 
@@ -164,7 +167,7 @@ namespace CrazyRubberProject
                 {
                     occupiedPositions[randomCol - 1][randomRow] = true;
                 }
-                if (randomCol != 4)
+                if (randomCol != columnAmount)
                 {
                     occupiedPositions[randomCol + 1][randomRow] = true;
                 }
@@ -172,7 +175,7 @@ namespace CrazyRubberProject
                 {
                     occupiedPositions[randomCol][randomRow - 1] = true;
                 }
-                if (randomRow != 8)
+                if (randomRow != rowAmount)
                 {
                     occupiedPositions[randomCol][randomRow + 1] = true;
                 }
@@ -192,7 +195,7 @@ namespace CrazyRubberProject
                     occupiedPositions[randomCol - 1][randomRow - 1] = true;
 
                 }
-                if (randomRow != 8)
+                if (randomRow != rowAmount)
                 {
                     occupiedPositions[randomCol][randomRow + 1] = true;
                     occupiedPositions[randomCol + 1][randomRow + 1] = true;
@@ -216,7 +219,7 @@ namespace CrazyRubberProject
                     }
 
                 }
-                if (randomRow != 8)
+                if (randomRow != rowAmount)
                 {
                     for (int i = 0; i <= 4; i++)
                     {
@@ -226,7 +229,7 @@ namespace CrazyRubberProject
             }
         }
 
-        private bool PosAbailable(Obstacle obstacle, int randomRow, int randomCol)
+        private bool PosAbailable(TileObject obstacle, int randomRow, int randomCol)
         {
             if (occupiedPositions[randomCol][randomRow]) { return true; }
 
@@ -237,7 +240,7 @@ namespace CrazyRubberProject
                 {
                     if (occupiedPositions[randomCol - 1][randomRow]) { return true; }
                 }
-                if (randomCol != 4)
+                if (randomCol != columnAmount)
                 {
                     if (occupiedPositions[randomCol + 1][randomRow]) { return true; }
                 }
@@ -245,7 +248,7 @@ namespace CrazyRubberProject
                 {
                     if (occupiedPositions[randomCol][randomRow - 1]) { return true; }
                 }
-                if (randomRow != 8)
+                if (randomRow != rowAmount)
                 {
                     if (occupiedPositions[randomCol][randomRow + 1]) { return true; }
                 }
@@ -253,7 +256,7 @@ namespace CrazyRubberProject
             }
             else if (obstacle.size == 2)
             {
-                for (int i = 0; i <= 4; i++)
+                for (int i = 0; i <= columnAmount; i++)
                 {
                     if (occupiedPositions[i][randomRow] == true)
                     {
@@ -268,7 +271,7 @@ namespace CrazyRubberProject
                     if (occupiedPositions[randomCol - 1][randomRow - 1]) { return true; }
 
                 }
-                if (randomRow != 8)
+                if (randomRow != rowAmount)
                 {
                     if (occupiedPositions[randomCol][randomRow + 1]) { return true; }
                     if (occupiedPositions[randomCol][randomRow + 1]) { return true; }
@@ -279,7 +282,7 @@ namespace CrazyRubberProject
             else
             {
 
-                for (int i = 0; i <= 4; i++)
+                for (int i = 0; i <= columnAmount; i++)
                 {
                     if (occupiedPositions[i][randomRow] == true)
                     {
@@ -289,7 +292,7 @@ namespace CrazyRubberProject
 
                 if (randomRow != 0)
                 {
-                    for (int i = 0; i <= 4; i++)
+                    for (int i = 0; i <= columnAmount; i++)
                     {
                         if (occupiedPositions[i][randomRow-1] == true)
                         {
@@ -300,7 +303,7 @@ namespace CrazyRubberProject
                 }
                 if (randomRow != 8)
                 {
-                    for (int i = 0; i <= 4; i++)
+                    for (int i = 0; i <= columnAmount; i++)
                     {
                         if (occupiedPositions[i][randomRow+1] == true)
                         {
