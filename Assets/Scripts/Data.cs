@@ -7,4 +7,5 @@ public partial class Data
 {
     public float mejor_puntuacion;
     public int monedas;
+    public Dictionary<string, Sonido> sonido;
 }
