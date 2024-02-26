@@ -9,11 +9,17 @@ namespace CrazyRubberProject
         [SerializeField] private Tile[] tiles;
         [SerializeField] private int numberOfTiles;
         [SerializeField] private GameObject tileContainer;
+        [SerializeField] private AnimationCurve speedCurve;
+        [SerializeField] private float maxSpeed;
+        [SerializeField] private float duration;
 
         private int tileLength = 10;
         private int tileIndex;
-        private int speed = 3;
+        private float currentSpeed;
         private List<Tile> currentTiles;
+
+        
+        private float elapsedTime = 0f;
 
         public int difficultyLevel { get;  private set; }
 
@@ -63,18 +69,26 @@ namespace CrazyRubberProject
 
         IEnumerator TilesMovement()
         {
-            while (true)
+            while (elapsedTime < duration)
             {
-                MoveTiles();
+                // Evaluar el valor de la curva de animación en función del tiempo transcurrido
+                float curveValue = speedCurve.Evaluate(elapsedTime / duration);
+
+                // Calcular la velocidad actual utilizando el valor de la curva
+                currentSpeed = curveValue * maxSpeed;
+
+                Vector3 newPosition = tileContainer.transform.position;
+                newPosition.z += currentSpeed * Time.deltaTime;
+                tileContainer.transform.position = newPosition;
+
+                // Incrementar el tiempo transcurrido
+                elapsedTime += Time.deltaTime;
+
                 yield return null;
             }
-        }
 
-        void MoveTiles()
-        {
-            Vector3 newPosition = tileContainer.transform.position;
-            newPosition.z += speed * Time.deltaTime;
-            tileContainer.transform.position = newPosition;
+            // Asegurarse de que la velocidad máxima se alcanza exactamente al final de la animación
+            transform.Translate(Vector3.forward * maxSpeed * Time.deltaTime);
         }
 
         private void OnDestroy()
