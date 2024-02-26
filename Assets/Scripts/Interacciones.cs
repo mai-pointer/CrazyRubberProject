@@ -1,3 +1,4 @@
+using CrazyRubberProject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,8 +88,9 @@ public class Interacciones : MonoBehaviour
         if (other.CompareTag(tagMoneda))
         {
             //Monedas
-            Save.Data.monedas += cantMonedas;
+            Save.Data.monedas += cantMonedas * other.GetComponent<TileObject>().value;
             Controlador.ins.Dinero();
+            Destroy(other.gameObject);
         }
 
         //POWER UPS
@@ -102,11 +104,9 @@ public class Interacciones : MonoBehaviour
                 elemento.funcion(elemento);
             }
         }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag(tagMuerte))
+        //MUERTE
+        if (other.CompareTag(tagMuerte))
         {
             if (escudo)
             {
@@ -115,7 +115,7 @@ public class Interacciones : MonoBehaviour
                 escudoGO.SetActive(false);
                 escudo = false;
 
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
 
                 Destruir(powerUps[2].marcador);
                 powerUps[2].usado = false;
@@ -130,6 +130,33 @@ public class Interacciones : MonoBehaviour
             Debug.Log("MUERTO");
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag(tagMuerte))
+    //    {
+    //        if (escudo)
+    //        {
+    //            GameObject escudoGO = transform.GetChild(hijoEscudo).gameObject;
+
+    //            escudoGO.SetActive(false);
+    //            escudo = false;
+
+    //            Destroy(collision.gameObject);
+
+    //            Destruir(powerUps[2].marcador);
+    //            powerUps[2].usado = false;
+
+    //            return;
+    //        }
+
+    //        //Muerte
+    //        Controlador.ins.Muerto();
+    //        Destroy(gameObject);
+    //        //**** Particulas/Animacion ****
+    //        Debug.Log("MUERTO");
+    //    }
+    //}
 
     public void Destruir(UIDuracion marcador)
     {
