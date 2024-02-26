@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 267b2e2a7fe3ee1419d7b15b251c3c76, type: 3}
+      propertyPath: m_TagString
+      value: Muerte
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 267b2e2a7fe3ee1419d7b15b251c3c76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -143,3 +147,4 @@ MonoBehaviour:
   availablePositions: 0100010001
   canRotate: 1
   size: 1
+  value: 0

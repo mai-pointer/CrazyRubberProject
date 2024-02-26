@@ -93,6 +93,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vegetation_Tree_Trunk_Fallen_13
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b551e7a9f5c0a6348a0c2106f33e284a, type: 3}
+      propertyPath: m_TagString
+      value: Muerte
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b551e7a9f5c0a6348a0c2106f33e284a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -230,3 +234,4 @@ MonoBehaviour:
   availablePositions: 0100000001
   canRotate: 0
   size: 3
+  value: 0
