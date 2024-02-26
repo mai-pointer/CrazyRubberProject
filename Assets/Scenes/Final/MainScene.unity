@@ -3111,6 +3111,32 @@ MonoBehaviour:
   - {fileID: 1566623658241240272, guid: 94af617e1ce93ce4c91cd348954401c3, type: 3}
   numberOfTiles: 10
   tileContainer: {fileID: 1321637438}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.009979248
+      value: 0.28604126
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSpeed: 10
+  duration: 200
 --- !u!222 &1636742094
 CanvasRenderer:
   m_ObjectHideFlags: 0
