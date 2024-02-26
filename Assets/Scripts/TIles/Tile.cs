@@ -16,14 +16,16 @@ namespace CrazyRubberProject
         [SerializeField] private int numberOfProps;
 
         private TileManager tileManager;
-        private List<List<GameObject>> obstacleAnchorPoints = new List<List<GameObject>>();
-        private List<List<bool>> occupiedPositions = new List<List<bool>>();
+        private List<List<GameObject>> obstacleAnchorPoints;
+        private List<List<bool>> occupiedPositions;
 
         public delegate void PlayerEntered(Tile myTile);
         public static event PlayerEntered onPlayerEntered;
 
         private void OnEnable()
         {
+            obstacleAnchorPoints = new List<List<GameObject>>();
+            occupiedPositions = new List<List<bool>>();
             tileManager = FindObjectOfType<TileManager>();
             ObtainAnchors();
             DecorateTile();
@@ -56,14 +58,16 @@ namespace CrazyRubberProject
 
                 int randomCol;
                 int randomRow;
-
+                int maxAttemps = 10;
+                int currentAttemps = 0;
                 do
                 {
                     int randomColNum = Random.Range(0, abailablePos.Count);
                     randomCol = abailablePos[randomColNum];
                     randomRow = Random.Range(0, 8);
+                    currentAttemps++;
 
-                } while (PosAbailable(selectedObstacle, randomRow, randomCol));
+                } while (PosAbailable(selectedObstacle, randomRow, randomCol) && currentAttemps<maxAttemps);
                 
 
                 PositionHandler(selectedObstacle, randomRow, randomCol);
@@ -224,11 +228,6 @@ namespace CrazyRubberProject
 
         private bool PosAbailable(Obstacle obstacle, int randomRow, int randomCol)
         {
-            foreach (List<bool> list in occupiedPositions)
-            {
-                Debug.Log("Lsta: " + list.Count);
-            }
-
             if (occupiedPositions[randomCol][randomRow]) { return true; }
 
             if (obstacle.size == 1)
