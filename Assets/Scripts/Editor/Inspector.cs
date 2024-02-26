@@ -37,6 +37,21 @@ public class SaveEditor : Editor
 }
 #endregion
 
+//Editor del componete Sonidos
+#region sonidos
+[CustomEditor(typeof(Sonidos))]
+public class SonidosEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        GUILayout.Label("Sonidos: Administra facilmente tus sonidos", EditorStyles.boldLabel);
+        EditorGUILayout.Space(10);
+
+        base.DrawDefaultInspector();
+    }
+}
+#endregion
+
 public static class UIExtras
 {
     public static void Separador(int altura = 1)
