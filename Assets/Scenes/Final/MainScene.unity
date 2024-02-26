@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3803,7 +3803,7 @@ PrefabInstance:
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: tiempoMov
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
