@@ -38,8 +38,13 @@ public class Sonidos : MonoBehaviour
 
     private void Awake()
     {
+        // Convierte el script en Singleton
+        if (transform.parent == null)
+        {
+            Instanciar<Sonidos>.Singletons(this, gameObject);
+        }
         //Reproduce automaticamente la musica
-        if (autoPlay != "") GetMusica(autoPlay, true);
+        if (autoPlay != "") GetMusica(autoPlay, true, true);
     }
 
     private void OnEnable()
@@ -85,12 +90,12 @@ public class Sonidos : MonoBehaviour
         if (volumen < 0)
         {
             volumen = 0;
-            Debug.Log("[BL][Sonidos: 1] El volumen no puede ser menor que 0");
+            Debug.Log("[Sonidos: 1] El volumen no puede ser menor que 0");
         }
         else if (volumen < 0)
         {
             volumen = 100;
-            Debug.Log("[BL][Sonidos: 2] El volumen no puede ser mayor que 100");
+            Debug.Log("[Sonidos: 2] El volumen no puede ser mayor que 100");
         }
 
         //Lo cambia
@@ -124,35 +129,35 @@ public class Sonidos : MonoBehaviour
             Debug.Log("El dispositivo actual no soporta la vibracion");
         }
     }
-    public static AudioSource GetSonido(string nombre, bool bucle = false)
+    public static AudioSource GetSonido(string nombre, bool inmortal = false, bool bucle = false)
     {
         int volumen = Save.Data.sonido["sonidos"].volumen;
         if (!Save.Data.sonido["sonidos"].estado)
         {
             volumen = 0;
         }
-        AudioSource audio = Creador(sonidos, nombre, volumen, bucle);
-        sonidoCreado.Add(new SonidosCreados(audio));
+        AudioSource audio = Creador(sonidos, nombre, volumen, inmortal, bucle);
+        sonidoCreado.Add(new(audio, inmortal));
         return audio;
     }
-    public static AudioSource GetMusica(string nombre, bool bucle = false)
+    public static AudioSource GetMusica(string nombre, bool inmortal = false, bool bucle = false)
     {
         int volumen = Save.Data.sonido["musica"].volumen;
         if (!Save.Data.sonido["musica"].estado)
         {
             volumen = 0;
         }
-        AudioSource audio = Creador(musica, nombre, volumen, bucle);
-        musicaCreada.Add(new SonidosCreados(audio));
+        AudioSource audio = Creador(musica, nombre, volumen, inmortal, bucle);
+        musicaCreada.Add(new(audio, inmortal));
         return audio;
     }
-    private static AudioSource Creador(DictionaryBG<AudioClip> lista, string nombre, int volumen, bool bucle)
+    private static AudioSource Creador(DictionaryBG<AudioClip> lista, string nombre, int volumen, bool inmortal, bool bucle)
     {
         //Comprueba que exista el audio
         if (!lista.Inside(nombre))
         {
             //Ese sonido no esta dentro del array
-            Debug.Log($"[BL][Sonidos: 3] No existe el sonido {nombre} dentro de Sounds");
+            Debug.Log($"[Sonidos: 3] No existe el sonido {nombre} dentro de Sounds");
             return null;
         }
         //Crea un contenedor padre
@@ -161,7 +166,12 @@ public class Sonidos : MonoBehaviour
             padre = new GameObject($"Sonidos").transform;
             padre.position = Vector3.zero;
         }
-   
+        if (padreInmortal == null)
+        {
+            padreInmortal = new GameObject($"Sonidos-Inmortal").transform;
+            padreInmortal.position = Vector3.zero;
+            padreInmortal.gameObject.AddComponent<Singleton>();
+        }
         //Instancia el audio
         GameObject instancia = new GameObject($"Sonido-{nombre}");
         instancia.transform.position = Vector3.zero;
@@ -171,8 +181,10 @@ public class Sonidos : MonoBehaviour
         audioSource.clip = lista.Get(nombre);
         audioSource.volume = ((float)volumen / 100);
 
-        instancia.transform.SetParent(padre);
-
+        //Le da la inmortalidad entre escena
+        if (inmortal) DontDestroyOnLoad(instancia);
+        else
+            instancia.transform.SetParent((inmortal) ? padreInmortal : padre);
 
         //Lo activa en bucle
         if (bucle) audioSource.loop = true;
@@ -220,9 +232,10 @@ public class SonidosCreados
     public AudioSource sonido;
     public bool inmortal;
 
-    public SonidosCreados(AudioSource sonido)
+    public SonidosCreados(AudioSource sonido, bool inmortal)
     {
         this.sonido = sonido;
+        this.inmortal = inmortal;
     }
 }
 public enum TipoSonido
