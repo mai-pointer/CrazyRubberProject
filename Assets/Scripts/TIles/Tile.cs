@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 namespace CrazyRubberProject
@@ -10,6 +11,7 @@ namespace CrazyRubberProject
         [SerializeField] private GameObject[] obstacleAnchors;
         [SerializeField] private TileObject[] obstacles;
         [SerializeField] private TileObject[] collectibles;
+        [SerializeField] private TileObject[] powerUps;
         [SerializeField] public GameObject anchorPoint;
         [SerializeField] private int numberOfProps;
 
@@ -17,6 +19,8 @@ namespace CrazyRubberProject
         private List<List<GameObject>> obstacleAnchorPoints;
         private List<List<bool>> occupiedPositions;
         private int gemAmount;
+        private int powerUpAmount;
+        private int[] powerUpAmountChoices = new int[] { 0, 0, 0, 0, 0, 1 };
         private int columnAmount = 4;
         private int rowAmount = 8;
 
@@ -29,11 +33,18 @@ namespace CrazyRubberProject
             occupiedPositions = new List<List<bool>>();
             tileManager = FindObjectOfType<TileManager>();
             gemAmount = Random.Range(1, 5);
+            powerUpAmount = powerUpAmountChoices[Random.Range(0, powerUpAmountChoices.Length)];
 
             ObtainAnchors();
             DecorateTile();
             SetObjects(obstacles, tileManager.difficultyLevel);
             SetObjects(collectibles, gemAmount);
+            /*if (powerUpAmount > 0)
+            {
+                SetObjects(powerUps, powerUpAmount);
+            }*/
+            SetObjects(powerUps, 1);
+
         }
 
         private void DecorateTile()
@@ -74,7 +85,10 @@ namespace CrazyRubberProject
                 PositionHandler(selectedObj, randomRow, randomCol);
 
                 TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
+                
                 newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;
+
+                
             }
         }
 

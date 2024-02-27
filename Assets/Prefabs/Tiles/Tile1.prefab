@@ -1527,6 +1527,8 @@ MonoBehaviour:
   collectibles:
   - {fileID: 4075295483080538787, guid: d18be603c12f9784d8fe93db62320530, type: 3}
   - {fileID: 6757273385857254781, guid: 6cd058d24e3e2c248a89283b2af2776b, type: 3}
+  powerUps:
+  - {fileID: 1852102749804852293, guid: 7c1dee2404023dc4783f13f0a988504f, type: 3}
   anchorPoint: {fileID: 4679209480695839359}
   numberOfProps: 10
 --- !u!65 &2173927294548198042

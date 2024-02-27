@@ -15,7 +15,7 @@ namespace CrazyRubberProject
 
         private int tileLength = 10;
         private int tileIndex;
-        private float currentSpeed;
+        public float currentSpeed { get; private set; }
         private List<Tile> currentTiles;
 
         

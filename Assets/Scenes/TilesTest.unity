@@ -291,6 +291,14 @@ MonoBehaviour:
   - {fileID: 1566623658241240272, guid: 94af617e1ce93ce4c91cd348954401c3, type: 3}
   numberOfTiles: 10
   tileContainer: {fileID: 1139327332}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSpeed: 0
+  duration: 0
 --- !u!1 &750639160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b02122a965bac7b4e9dfc9e87a985311,

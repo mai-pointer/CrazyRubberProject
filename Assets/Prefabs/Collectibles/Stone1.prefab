@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 4075295483080538787}
   - component: {fileID: 6593532699829749326}
   - component: {fileID: -2763766274368705484}
-  - component: {fileID: 5096355477738859999}
   m_Layer: 0
   m_Name: Stone1
   m_TagString: Moneda
@@ -133,8 +132,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availablePositions: 0100010001
   canRotate: 1
+  isAnimated: 1
   size: 1
   value: 1
+  rotationSpeed: 100
 --- !u!65 &6593532699829749326
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -183,24 +184,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &5096355477738859999
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448123184397291684}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f8233fb20ee0c4f41bf8feb0611352b0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
