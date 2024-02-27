@@ -43,7 +43,7 @@ namespace CrazyRubberProject
             {
                 SetObjects(powerUps, powerUpAmount);
             }*/
-            SetObjects(powerUps, 1);
+            //SetObjects(powerUps, 1);
 
         }
 
@@ -84,11 +84,8 @@ namespace CrazyRubberProject
 
                 PositionHandler(selectedObj, randomRow, randomCol);
 
-                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
-                
-                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;
-
-                
+                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol)) as TileObject;
+                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;   
             }
         }
 

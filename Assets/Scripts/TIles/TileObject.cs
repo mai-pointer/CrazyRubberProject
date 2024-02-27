@@ -20,31 +20,17 @@ namespace CrazyRubberProject
 
         private void OnEnable()
         {
-            //if (isAnimated)
-            //{
-            //    GameObject gemContainer = GameObject.Find("GemContainer");
-            //    transform.parent = gemContainer.transform.parent;
-            //    tileManager = FindObjectOfType<TileManager>();
-            //    targetToFollow = GameObject.Find("TileContainer").transform;
-            //    desiredDistance = targetToFollow.position.z - transform.position.z;
-            //    initialPosition = transform.position - targetToFollow.position;
-            //    StartCoroutine(AnimateGems());
-            //}
-        }
-
-        IEnumerator AnimateGems()
-        {            
-
-            while (true)
+            if (isAnimated)
             {
-                moveSpeed = tileManager.currentSpeed;
-                transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.Self);
-
-                Vector3 newPos = targetToFollow.position + initialPosition;
-                transform.position = Vector3.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
-                yield return null;
+            //    Debug.Log($"Local scale: {transform.localScale}, Global scale: {transform.lossyScale}");
+            //    GetComponent<Animator>().enabled = true;
+            //    Debug.Log($"Local scale: {transform.localScale}, Global scale: {transform.lossyScale}");
+            //    transform.localScale = Vector3.one;
+            //    Debug.Log($"Local scale: {transform.localScale}, Global scale: {transform.lossyScale}");
             }
         }
+
+        
     }
 
 }
