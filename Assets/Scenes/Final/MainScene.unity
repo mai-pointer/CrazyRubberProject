@@ -3833,6 +3833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
+      propertyPath: fuerzaSalto
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
       propertyPath: velocidadRotacion
       value: 50
       objectReference: {fileID: 0}
