@@ -25,6 +25,7 @@ public class Interacciones : MonoBehaviour
     [SerializeField] private Material fantasma;
     private PowerUp[] powerUps;
     private bool escudo;
+    private bool inmortal;
 
 
     private void Start()
@@ -47,12 +48,14 @@ public class Interacciones : MonoBehaviour
                     Material original = renderer.material;
                     renderer.material = fantasma;
 
-                    boxcollider.isTrigger = true;
+                    //boxcollider.isTrigger = true;
+                    inmortal = true;
 
                     StartCoroutine(Esperar(elemento, () =>
                     {
                         renderer.material = original;
-                        boxcollider.isTrigger = false;
+                        //boxcollider.isTrigger = false;
+                        inmortal = false;
 
                     }));
                 }
@@ -100,6 +103,8 @@ public class Interacciones : MonoBehaviour
             {
                 if (elemento.usado) continue;
 
+                Destroy(other.gameObject);
+
                 elemento.usado = true;
                 elemento.funcion(elemento);
             }
@@ -123,11 +128,13 @@ public class Interacciones : MonoBehaviour
                 return;
             }
 
-            //Muerte
-            Controlador.ins.Muerto();
-            Destroy(gameObject);
-            //**** Particulas/Animacion ****
-            Debug.Log("MUERTO");
+            if (!inmortal)
+            {
+                //Muerte
+                Controlador.ins.Muerto();
+                Destroy(gameObject);
+                //**** Particulas/Animacion ****
+            }
         }
     }
 
