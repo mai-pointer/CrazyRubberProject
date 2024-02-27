@@ -10,6 +10,7 @@ public class Controlador : MonoBehaviour
 
     private float puntuacion = 0f;
     public static Controlador ins;
+    private bool muerto;
 
     private void Awake()
     {
@@ -23,8 +24,12 @@ public class Controlador : MonoBehaviour
 
     private void Update()
     {
-        puntuacion += Time.deltaTime * 10f;
-        puntuacionTxt.text = puntuacion.ToString("F0");
+        if (!muerto)
+        {
+            puntuacion += Time.deltaTime * 10f;
+            puntuacionTxt.text = puntuacion.ToString("F0");
+        }
+      
     }
 
     public void Dinero() 
@@ -34,6 +39,7 @@ public class Controlador : MonoBehaviour
 
     public void Muerto() 
     {
+        muerto = true;
         if (Save.Data.mejor_puntuacion < puntuacion) Save.Data.mejor_puntuacion = puntuacion;
         MenuMuerte.SetActive(true);
     }
