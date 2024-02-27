@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [Serializable]
@@ -102,6 +103,22 @@ public class SelectorRueda : MonoBehaviour
         else
         {
             izq.enabled = true;
+        }
+    }
+
+    public void CambiarSkin(int direccion)
+    {
+        int siguienteIndice = Mathf.Clamp(indiceRuedaActual + direccion, 0, ruedas.Length - 1);
+
+        if (siguienteIndice != indiceRuedaActual)
+        {
+            // Reproducir el sonido de cambio de rueda al inicio (solo si la rueda actual no está en el primer índice)
+            if (indiceRuedaActual != 0 && cambioRuedaSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(cambioRuedaSound);
+            }
+
+            StartCoroutine(MoverRuedas(siguienteIndice));
         }
     }
 
