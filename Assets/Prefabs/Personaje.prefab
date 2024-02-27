@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7776052841961935772}
   - component: {fileID: 8379133946566630776}
   - component: {fileID: 6519609478520500242}
+  - component: {fileID: 725279831174240331}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Player
@@ -191,6 +192,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &725279831174240331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741780467707069952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3594705941053936017
 GameObject:
   m_ObjectHideFlags: 0
