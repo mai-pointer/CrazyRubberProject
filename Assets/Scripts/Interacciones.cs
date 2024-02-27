@@ -88,12 +88,13 @@ public class Interacciones : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //MONEDAS
         if (other.CompareTag(tagMoneda))
         {
-            //Monedas
             Save.Data.monedas += cantMonedas * other.GetComponent<TileObject>().value;
             Controlador.ins.Dinero();
             Destroy(other.gameObject);
+            //**** Particulas/Animacion ****
         }
 
         //POWER UPS
