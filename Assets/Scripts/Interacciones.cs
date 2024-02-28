@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Personaje))]
 public class Interacciones : MonoBehaviour
@@ -27,8 +26,6 @@ public class Interacciones : MonoBehaviour
     private PowerUp[] powerUps;
     private bool escudo;
     private bool inmortal;
-
-    public GameObject psMuerte, psMonedas;
 
 
     private void Start()
@@ -97,8 +94,8 @@ public class Interacciones : MonoBehaviour
             Save.Data.monedas += cantMonedas * other.GetComponent<TileObject>().value;
             Controlador.ins.Dinero();
             Destroy(other.gameObject);
-            // Instancia el objeto
-            Instantiate(psMonedas, transform.parent);
+            Sonidos.GetSonido("Moneda");
+            //**** Particulas/Animacion ****
         }
 
         //POWER UPS
@@ -139,10 +136,8 @@ public class Interacciones : MonoBehaviour
                 //Muerte
                 Sonidos.GetSonido("Muerte");
                 Controlador.ins.Muerto();
-                // Instancia el objeto
-                Instantiate(psMuerte, transform.parent);
-
                 Destroy(gameObject);
+                //**** Particulas/Animacion ****
             }
         }
     }
