@@ -11,15 +11,20 @@ public class MainMenu : MonoBehaviour
 
     public GameObject quitConfirmationPanel; // Panel de confirmación de salida
     public GameObject instructionPanel;
+    public bool sonidos = false;
     private bool isPaused = false;
 
     void Start()
     {
-        muteMusicOn.gameObject.SetActive(Save.Data.musica.estado);
-        muteMusicOff.gameObject.SetActive(!Save.Data.musica.estado);
+        if (sonidos)
+        {
+            muteMusicOn.gameObject.SetActive(Save.Data.musica.estado);
+            muteMusicOff.gameObject.SetActive(!Save.Data.musica.estado);
 
-        muteSoundOn.gameObject.SetActive(Save.Data.sonidos.estado);
-        muteSoundOff.gameObject.SetActive(!Save.Data.sonidos.estado);
+            muteSoundOn.gameObject.SetActive(Save.Data.sonidos.estado);
+            muteSoundOff.gameObject.SetActive(!Save.Data.sonidos.estado);
+        }
+      
     }
 
     // Llamado cuando se presiona el botón de mutear

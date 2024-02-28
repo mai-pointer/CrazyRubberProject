@@ -3646,6 +3646,7 @@ MonoBehaviour:
   muteMusicOff: {fileID: 48819563}
   quitConfirmationPanel: {fileID: 2134752602}
   instructionPanel: {fileID: 314288992}
+  sonidos: 1
 --- !u!4 &1965435013
 Transform:
   m_ObjectHideFlags: 0
@@ -3693,6 +3694,15 @@ MonoBehaviour:
   data:
     mejor_puntuacion: 0
     monedas: 0
+    vibracion:
+      estado: 1
+      volumen: 100
+    musica:
+      estado: 1
+      volumen: 100
+    sonidos:
+      estado: 1
+      volumen: 100
   mensajes: 0
 --- !u!4 &1967145441
 Transform:
