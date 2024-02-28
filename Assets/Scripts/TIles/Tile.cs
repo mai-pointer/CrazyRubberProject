@@ -39,11 +39,10 @@ namespace CrazyRubberProject
             DecorateTile();
             SetObjects(obstacles, tileManager.difficultyLevel);
             SetObjects(collectibles, gemAmount);
-            /*if (powerUpAmount > 0)
+            if (powerUpAmount > 0)
             {
                 SetObjects(powerUps, powerUpAmount);
-            }*/
-            //SetObjects(powerUps, 1);
+            }
 
         }
 
