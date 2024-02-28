@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     {
         // Reproducir la canción en bucle
         audioSource.loop = true;
-        audioSource.Play();
+        //audioSource.Play();
     }
 
     // Llamado cuando se presiona el botón de mutear
