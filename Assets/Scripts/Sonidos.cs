@@ -20,6 +20,10 @@ public class Sonidos : MonoBehaviour
     [SerializeField] private DictionaryBG<AudioClip> _musica = new();
     [Header("--Botones--")]
     [SerializeField] private string sonidoBotones = "";
+    [Header("--Volumen--")]
+    [Range(0, 100)][SerializeField] private int musicaVolumen = 100;
+    [Range(0, 100)][SerializeField] private int sonidosVolumen = 100;
+
     //ESTATICAS
     private static List<SonidosCreados> musicaCreada = new();
     private static List<SonidosCreados> sonidoCreado = new();
@@ -30,8 +34,6 @@ public class Sonidos : MonoBehaviour
 
     public static bool enUso = false;
 
-    public static Dictionary<string, Sonido> sonido { get => Save.Data.sonido; set => Save.Data.sonido = value; }
-
     private void OnValidate()
     {
         sonidos = _sonidos;
@@ -40,6 +42,13 @@ public class Sonidos : MonoBehaviour
 
     private void Awake()
     {
+        //Pone el volumen
+        Save.Data.musica.volumen = musicaVolumen;
+        Save.Data.sonidos.volumen = sonidosVolumen;
+
+        //Sonidos.Volumen(TipoSonido.sonidos, sonidosVolumen);
+        //Sonidos.Volumen(TipoSonido.musica, musicaVolumen);
+
         //Reproduce automaticamente la musica
         if (!enUso)
         {
@@ -69,13 +78,15 @@ public class Sonidos : MonoBehaviour
     #region sonidos volumen/estado
     public static void AlternarEstado(TipoSonido tipo)
     {
-        Estado(tipo, !Save.Data.sonido[tipo.ToString()].estado);
+        Estado(tipo, !Get(tipo).estado);
     }
 
     public static void Estado(TipoSonido tipo, bool estado)
     {
         //Lo cambia
-        Save.Data.sonido[tipo.ToString()].estado = estado;
+        Sonido s = Get(tipo); 
+        s.estado = estado;
+        Set(tipo, s);
 
         //Lo aplica a los sonidos existentes
         List<SonidosCreados> lista = new();
@@ -86,9 +97,9 @@ public class Sonidos : MonoBehaviour
         foreach (var elemento in lista)
         {
             //Se mutea o desmutea
-            elemento.sonido.volume = (!sonido[tipo.ToString()].estado)
+            elemento.sonido.volume = (!Get(tipo).estado)
             ? 0
-            : ((float)sonido[tipo.ToString()].volumen / 100);
+            : ((float)Get(tipo).volumen / 100);
         }
     }
     public static void Volumen(TipoSonido tipo, int volumen)
@@ -106,7 +117,9 @@ public class Sonidos : MonoBehaviour
         }
 
         //Lo cambia
-        Save.Data.sonido[tipo.ToString()].volumen = volumen;
+        Sonido s = Get(tipo);
+        s.volumen = volumen;
+        Set(tipo, s);
 
         //Lo aplica a los sonidos existentes
         List<SonidosCreados> lista = new();
@@ -116,7 +129,7 @@ public class Sonidos : MonoBehaviour
 
         foreach (var elemento in lista)
         {
-            elemento.sonido.volume = ((float)sonido[tipo.ToString()].volumen / 100);
+            elemento.sonido.volume = ((float)Get(tipo).volumen / 100);
         }
 
     }
@@ -126,7 +139,7 @@ public class Sonidos : MonoBehaviour
     #region instanciar
     public static void GetVibracion()
     {
-        if (Save.Data.sonido["vibracion"].estado)
+        if (Save.Data.vibracion.estado)
         {
             if (SystemInfo.supportsVibration)
             {
@@ -138,8 +151,8 @@ public class Sonidos : MonoBehaviour
     }
     public static AudioSource GetSonido(string nombre, bool inmortal = false, bool bucle = false)
     {
-        int volumen = Save.Data.sonido["sonidos"].volumen;
-        if (!Save.Data.sonido["sonidos"].estado)
+        int volumen = Save.Data.sonidos.volumen;
+        if (!Save.Data.sonidos.estado)
         {
             volumen = 0;
         }
@@ -149,8 +162,8 @@ public class Sonidos : MonoBehaviour
     }
     public static AudioSource GetMusica(string nombre, bool inmortal = false, bool bucle = false)
     {
-        int volumen = Save.Data.sonido["musica"].volumen;
-        if (!Save.Data.sonido["musica"].estado)
+        int volumen = Save.Data.musica.volumen;
+        if (!Save.Data.musica.estado)
         {
             volumen = 0;
         }
@@ -195,7 +208,9 @@ public class Sonidos : MonoBehaviour
 
         //Lo activa en bucle
         if (bucle) audioSource.loop = true;
-        else Destroy(instancia, lista.Get(nombre).length);
+        else {
+            //Destroy(instancia, lista.Get(nombre).length);
+        };
 
         //Lo activa y devuelve
         audioSource.Play();
@@ -222,7 +237,44 @@ public class Sonidos : MonoBehaviour
         }
     }
     #endregion
+
+
+    private static Sonido Get(TipoSonido tipo) {
+        Sonido sonido = new();
+
+        switch (tipo.ToString())
+        {
+            case "musica":
+                sonido = Save.Data.musica;
+                break;
+            case "sonidos":
+                sonido = Save.Data.sonidos;
+                break;
+            case "vibracion":
+                sonido = Save.Data.vibracion;
+                break;
+        }
+
+        return sonido;
+    }
+
+    private static void Set(TipoSonido tipo, Sonido value)
+    {
+        switch (tipo.ToString())
+        {
+            case "musica":
+                Save.Data.musica = value;
+                break;
+            case "sonidos":
+                Save.Data.sonidos = value;
+                break;
+            case "vibracion":
+                Save.Data.vibracion = value;
+                break;
+        }
+    }
 }
+
 
 
 //Clases que se usan en la ventana de SONIDOS
@@ -231,7 +283,7 @@ public class Sonidos : MonoBehaviour
 public class Sonido
 {
     public bool estado = true;
-    public int volumen = 100;
+    public int volumen = 100; // Valor por defecto 100%
 }
 [Serializable]
 public class SonidosCreados
