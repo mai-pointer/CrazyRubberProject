@@ -67,6 +67,7 @@ public class Save : MonoBehaviour
     }
     public void Guardar()
     {
+
         string jsonString = JsonUtility.ToJson(data);
         PlayerPrefs.SetString("data", jsonString);
 

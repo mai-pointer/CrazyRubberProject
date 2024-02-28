@@ -2428,11 +2428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de7b004e2700489c693c8f1f50792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
   exitButton: {fileID: 0}
   shopButton: {fileID: 0}
-  muteButton: {fileID: 0}
-  soundButton: {fileID: 0}
+  muteSoundOn: {fileID: 0}
+  muteSoundOff: {fileID: 0}
+  muteMusicOn: {fileID: 0}
+  muteMusicOff: {fileID: 0}
   quitConfirmationPanel: {fileID: 0}
   instructionPanel: {fileID: 0}
 --- !u!4 &1275281201

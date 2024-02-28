@@ -4,48 +4,40 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public AudioSource audioSource;
     public Button exitButton;
     public Button shopButton;
-    public Button muteButton;
-    public Button soundButton;
+    public Button muteSoundOn, muteSoundOff;
+    public Button muteMusicOn, muteMusicOff;
+
     public GameObject quitConfirmationPanel; // Panel de confirmación de salida
     public GameObject instructionPanel;
-    private bool isMuted = false;
     private bool isPaused = false;
 
     void Start()
     {
-        if (audioSource == null) return;
+        muteMusicOn.gameObject.SetActive(Save.Data.musica.estado);
+        muteMusicOff.gameObject.SetActive(!Save.Data.musica.estado);
 
-        // Reproducir la canción en bucle
-        audioSource.loop = true;
-        audioSource.Play();
+        muteSoundOn.gameObject.SetActive(Save.Data.sonidos.estado);
+        muteSoundOff.gameObject.SetActive(!Save.Data.sonidos.estado);
     }
 
     // Llamado cuando se presiona el botón de mutear
-    public void ToggleMute()
+    public void ToggleSound(bool muteado)
     {
-        if (audioSource == null) return;
+        Sonidos.Estado(TipoSonido.sonidos, muteado);
 
-        isMuted = !isMuted; // Cambiar el estado de silencio (mute)
-        if (isMuted)
-        {
-            // Si está silenciado, detener la reproducción
-            audioSource.Pause();
-            // Desactivar el botón de mutear y activar el botón de sonido
-            muteButton.gameObject.SetActive(false);
-            soundButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            // Si no está silenciado, reanudar la reproducción
-            audioSource.UnPause();
-            // Desactivar el botón de sonido y activar el botón de mutear
-            soundButton.gameObject.SetActive(false);
-            muteButton.gameObject.SetActive(true);
-        }
+        muteSoundOn.gameObject.SetActive(muteado);
+        muteSoundOff.gameObject.SetActive(!muteado);
     }
+    public void TogglMusic(bool muteado)
+    {
+        Sonidos.Estado(TipoSonido.musica, muteado);
+
+        muteMusicOn.gameObject.SetActive(muteado);
+        muteMusicOff.gameObject.SetActive(!muteado);
+    }
+
 
     public void PlayGame()
     {
