@@ -27,7 +27,7 @@ public class Interacciones : MonoBehaviour
     private bool escudo;
     private bool inmortal;
 
-
+    public GameObject psMuerte;
     private void Start()
     {
         BoxCollider boxcollider = GetComponent<BoxCollider>();
@@ -136,6 +136,7 @@ public class Interacciones : MonoBehaviour
                 //Muerte
                 Sonidos.GetSonido("Muerte");
                 Controlador.ins.Muerto();
+                Instantiate(psMuerte, transform.parent);
                 Destroy(gameObject);
                 //**** Particulas/Animacion ****
             }
