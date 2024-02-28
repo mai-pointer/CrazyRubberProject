@@ -132,6 +132,7 @@ public class Interacciones : MonoBehaviour
             if (!inmortal)
             {
                 //Muerte
+                Sonidos.GetSonido("Muerte");
                 Controlador.ins.Muerto();
                 Destroy(gameObject);
                 //**** Particulas/Animacion ****
