@@ -97,7 +97,8 @@ public class Interacciones : MonoBehaviour
             Save.Data.monedas += cantMonedas * other.GetComponent<TileObject>().value;
             Controlador.ins.Dinero();
             Destroy(other.gameObject);
-            Instantiate(psMonedas, transform);
+            // Instancia el objeto
+            Instantiate(psMonedas, transform.parent);
         }
 
         //POWER UPS
@@ -136,7 +137,9 @@ public class Interacciones : MonoBehaviour
             {
                 //Muerte
                 Controlador.ins.Muerto();
+                // Instancia el objeto
                 Instantiate(psMuerte, transform.parent);
+
                 Destroy(gameObject);
             }
         }
