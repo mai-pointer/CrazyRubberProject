@@ -94,6 +94,7 @@ public class Interacciones : MonoBehaviour
             Save.Data.monedas += cantMonedas * other.GetComponent<TileObject>().value;
             Controlador.ins.Dinero();
             Destroy(other.gameObject);
+            Sonidos.GetSonido("Moneda");
             //**** Particulas/Animacion ****
         }
 
@@ -105,6 +106,7 @@ public class Interacciones : MonoBehaviour
                 if (elemento.usado) continue;
 
                 Destroy(other.gameObject);
+                Sonidos.GetSonido("Powerup");
 
                 elemento.usado = true;
                 elemento.funcion(elemento);
@@ -132,6 +134,7 @@ public class Interacciones : MonoBehaviour
             if (!inmortal)
             {
                 //Muerte
+                Sonidos.GetSonido("Muerte");
                 Controlador.ins.Muerto();
                 Destroy(gameObject);
                 //**** Particulas/Animacion ****

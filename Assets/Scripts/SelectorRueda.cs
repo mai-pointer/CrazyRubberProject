@@ -40,7 +40,7 @@ public class SelectorRueda : MonoBehaviour
     public Image der, izq;
 
     public AudioClip cambioRuedaSound; // Variable para el sonido de cambio de rueda
-    public AudioSource audioSource; // Variable para el AudioSource
+    //public AudioSource audioSource; // Variable para el AudioSource
 
     void Start()
     {
@@ -76,9 +76,10 @@ public class SelectorRueda : MonoBehaviour
                     if (siguienteIndice != indiceRuedaActual)
                     {
                         // Reproducir el sonido de cambio de rueda al inicio (solo si la rueda actual no está en el primer índice)
-                        if (indiceRuedaActual != 0 && cambioRuedaSound != null && audioSource != null)
+                        if (indiceRuedaActual != 0 && cambioRuedaSound != null)
                         {
-                            audioSource.PlayOneShot(cambioRuedaSound);
+                            Sonidos.GetSonido("Cambio");
+                            //audioSource.PlayOneShot(cambioRuedaSound);
                         }
 
                         StartCoroutine(MoverRuedas(siguienteIndice));
@@ -113,9 +114,9 @@ public class SelectorRueda : MonoBehaviour
         if (siguienteIndice != indiceRuedaActual)
         {
             // Reproducir el sonido de cambio de rueda al inicio (solo si la rueda actual no está en el primer índice)
-            if (indiceRuedaActual != 0 && cambioRuedaSound != null && audioSource != null)
+            if (indiceRuedaActual != 0 && cambioRuedaSound != null)
             {
-                audioSource.PlayOneShot(cambioRuedaSound);
+                Sonidos.GetSonido("Cambio");
             }
 
             StartCoroutine(MoverRuedas(siguienteIndice));
@@ -128,9 +129,9 @@ public class SelectorRueda : MonoBehaviour
         Vector3 posicionDestino = new Vector3(-40f + siguienteIndice * separacionEntreRuedas, transform.position.y, transform.position.z);
 
         // Reproducir el sonido de cambio de rueda al comenzar a moverse
-        if (cambioRuedaSound != null && audioSource != null && !audioSource.isPlaying)
+        if (cambioRuedaSound != null)
         {
-            audioSource.PlayOneShot(cambioRuedaSound);
+            Sonidos.GetSonido("Cambio");
         }
 
         while (transform.position != posicionDestino)

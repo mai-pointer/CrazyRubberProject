@@ -7,5 +7,10 @@ public partial class Data
 {
     public float mejor_puntuacion;
     public int monedas;
-    public Dictionary<string, Sonido> sonido;
+    public Dictionary<string, Sonido> sonido = new() //Sonidos
+    {
+        { "vibracion", new() },
+        { "musica", new() },
+        { "sonidos", new() },
+    };
 }

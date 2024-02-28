@@ -76,6 +76,8 @@ public class Personaje : MonoBehaviour
         {
             case 0:
                 //Salto
+                Sonidos.GetSonido("Salto");
+
                 RaycastHit hit;
 
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
