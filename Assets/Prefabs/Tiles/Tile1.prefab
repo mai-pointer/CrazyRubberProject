@@ -1240,6 +1240,8 @@ MonoBehaviour:
   decorationAreas:
   - {fileID: 7768390473676308628}
   - {fileID: 3879441696808891997}
+  floorArea:
+  - {fileID: 7894348330491578599}
   decorationAssets:
   - {fileID: 3532801362375388117, guid: 6b8a1e61658ffc24ab00cdf4f55f0663, type: 3}
   - {fileID: 3451420756103417712, guid: 4ebb70e53ec973141aea9ab8e6e52ac8, type: 3}
@@ -1350,6 +1352,17 @@ MonoBehaviour:
   - {fileID: 3831805865793660734, guid: 1620a7c901b8e78459ae3d8d715f2127, type: 3}
   - {fileID: 5462418681280695148, guid: c75558229fdbb0b4eaedfa86a14dcf51, type: 3}
   - {fileID: 8653200099029139704, guid: 2cd97e420f86f044c999c82b179c534f, type: 3}
+  floorDecorationAssets:
+  - {fileID: 7147825250076752396, guid: 5996fef220bf8554195001bfdd8e43ae, type: 3}
+  - {fileID: 6227531171936610004, guid: 73dfeb6c60fa5204eb2c7ae39fe0a99d, type: 3}
+  - {fileID: 5845168419518183135, guid: 3629bcdc53ccc9a4599dedee41d58a6f, type: 3}
+  - {fileID: 1235111604138805521, guid: f38b583d37d5a1f48949f30cfb10db56, type: 3}
+  - {fileID: 420579114974245055, guid: 832df5f3a3586fc4ea06384e668a4829, type: 3}
+  - {fileID: 3456502790736240289, guid: f72b588f8940475449cc283b7b037f5e, type: 3}
+  - {fileID: 4887230006657673289, guid: 999b81a516e446848844e6d9b12bbcc4, type: 3}
+  - {fileID: 3989404631779716104, guid: 9d5e9557bc92fa74e820c7e9c2d09781, type: 3}
+  - {fileID: 2224524513208093631, guid: dc9a5106f062c0844a3277e2b7588ab7, type: 3}
+  - {fileID: 3101016177699243808, guid: 20ef825ab9212f6459ebf4d0ae4b00fc, type: 3}
   obstacleAnchors:
   - {fileID: 2499809524925896928}
   - {fileID: 6385026834502315954}
