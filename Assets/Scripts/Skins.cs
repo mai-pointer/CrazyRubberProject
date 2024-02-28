@@ -27,10 +27,5 @@ public class Skins : MonoBehaviour
         }
 
         transform.GetChild(1).gameObject.AddComponent<Rotacion>();
-
-        Outline outline = gameObject.AddComponent<Outline>();
-        outline.OutlineColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
-        outline.OutlineWidth = 7;
-        outline.enabled = false;
     }
 }

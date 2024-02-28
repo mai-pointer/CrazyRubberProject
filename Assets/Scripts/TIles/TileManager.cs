@@ -100,10 +100,10 @@ namespace CrazyRubberProject
         {
             switch (tileIndex)
             {
-                case int n when n >= -2 && n <= 3:
+                case int n when n >= -2 && n <= 1:
                     difficultyLevel = 0;
                     break;
-                case int n when n >= 4 && n <= 10:
+                case int n when n >= 2 && n <= 10:
                     difficultyLevel = 1;
                     break;
                 case int n when n >= 11 && n <= 50:

@@ -352,8 +352,8 @@ RectTransform:
   m_Children:
   - {fileID: 450250110}
   - {fileID: 1717633581}
-  - {fileID: 2134752603}
   - {fileID: 314288993}
+  - {fileID: 2134752603}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -804,7 +804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -280, y: 127}
+  m_AnchoredPosition: {x: -473, y: 127}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &460155241
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -130.75726, y: 0, z: -122.09033, w: 0}
+  m_margin: {x: -24.874817, y: 0, z: -19.321564, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1653,7 +1653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 280, y: 127}
+  m_AnchoredPosition: {x: 455, y: 127}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &899434256
@@ -1911,7 +1911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1186955371
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3102,6 +3102,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1855876244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855876246}
+  - component: {fileID: 1855876245}
+  m_Layer: 0
+  m_Name: Sonidos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1855876245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855876244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8a0d291eedca4469e7d328ba36851c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sonidos:
+    data:
+    - indice: Boton
+      valor: {fileID: 8300000, guid: 0c8239a499c359b48a44219f1175f038, type: 3}
+    - indice: Muerte
+      valor: {fileID: 8300000, guid: 9d37665b51003aa40a1428748aa1e81e, type: 3}
+    - indice: Salto
+      valor: {fileID: 8300000, guid: d3d1fabf2417a8e4284d79f65e62ab92, type: 3}
+    - indice: Cambio
+      valor: {fileID: 8300000, guid: 0e926c4c546256b419323909ea97619a, type: 3}
+    - indice: Moneda
+      valor: {fileID: 8300000, guid: e4ab34989aa665446a75223ce27277d5, type: 3}
+    - indice: Powerup
+      valor: {fileID: 8300000, guid: 898afd3a7e07706459429ae451c01326, type: 3}
+  autoPlay: Musica
+  _musica:
+    data:
+    - indice: Musica
+      valor: {fileID: 8300000, guid: 27d8f7cd4480a064f9247a3f8ba8d0c8, type: 3}
+  sonidoBotones: Boton
+--- !u!4 &1855876246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855876244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84678173, y: -8.733215, z: -3.881001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894850260
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de7b004e2700489c693c8f1f50792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1186955371}
+  audioSource: {fileID: 0}
   exitButton: {fileID: 657528029}
   shopButton: {fileID: 114665879}
   muteButton: {fileID: 1258669639}
@@ -3323,6 +3387,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.2181914, y: -2.4474552, z: 14158.535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1967145439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967145441}
+  - component: {fileID: 1967145440}
+  m_Layer: 0
+  m_Name: Save
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1967145440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967145439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1648036abfac7964ca0ec382127a81e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    mejor_puntuacion: 0
+    monedas: 0
+  mensajes: 0
+--- !u!4 &1967145441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967145439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84678173, y: -8.733215, z: -3.881001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3499,8 +3611,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.5999756, y: 133.22998}
-  m_SizeDelta: {x: -250.17, y: -1846.36}
+  m_AnchoredPosition: {x: -6.9000244, y: 147.30994}
+  m_SizeDelta: {x: -176.19998, y: -1011.8199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2134752604
 MonoBehaviour:
@@ -3648,3 +3760,5 @@ SceneRoots:
   - {fileID: 1776575401}
   - {fileID: 1965435013}
   - {fileID: 1186955372}
+  - {fileID: 1855876246}
+  - {fileID: 1967145441}

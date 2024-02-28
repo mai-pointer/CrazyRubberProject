@@ -34,6 +34,15 @@ public class Personaje : MonoBehaviour
 
     private Animator anim;
 
+
+    //private void Awake()
+    //{
+    //    Outline outline = gameObject.AddComponent<Outline>();
+    //    outline.OutlineColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+    //    outline.OutlineWidth = 7;
+    //    outline.enabled = false;
+    //}
+
     private void Start()
     {
         alturaOriginal = transform.position.y;
@@ -67,6 +76,8 @@ public class Personaje : MonoBehaviour
         {
             case 0:
                 //Salto
+                Sonidos.GetSonido("Salto");
+
                 RaycastHit hit;
 
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
