@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7537185041871748592}
   - component: {fileID: 6142634505063851241}
-  - component: {fileID: 7970359881617286655}
+  - component: {fileID: 3857380468625566692}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Muerte
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6762502, y: 0.3462006, z: 0.37835884}
   m_Center: {x: 0.27933705, y: 0.03607722, z: -0.16744709}
---- !u!54 &7970359881617286655
+--- !u!54 &3857380468625566692
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,5 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availablePositions: 0100000001
   canRotate: 0
+  isAnimated: 0
   size: 3
   value: 0

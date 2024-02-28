@@ -720,27 +720,27 @@ MonoBehaviour:
   indiceRuedaActual: 0
   parametrosRuedas:
   - gameObjectRueda: {fileID: 1610189939}
-    nombreRueda: La rueda clasica
+    nombreRueda: Classic wheel
     precio: 0
     comprada: 1
     indice: 0
   - gameObjectRueda: {fileID: 476283778}
-    nombreRueda: La ecologista
+    nombreRueda: Eco wheel
     precio: 25
     comprada: 0
     indice: 1
   - gameObjectRueda: {fileID: 535876490}
-    nombreRueda: La divorciada del tractor
+    nombreRueda: Rustic wheel
     precio: 50
     comprada: 0
     indice: 2
   - gameObjectRueda: {fileID: 312514705}
-    nombreRueda: La del coche gitano
+    nombreRueda: Peace wheel
     precio: 75
     comprada: 0
     indice: 3
   - gameObjectRueda: {fileID: 904357208}
-    nombreRueda: La amante de los abedules
+    nombreRueda: Birch wheel
     precio: 100
     comprada: 0
     indice: 4

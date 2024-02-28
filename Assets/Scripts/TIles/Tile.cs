@@ -7,7 +7,9 @@ namespace CrazyRubberProject
     public class Tile : MonoBehaviour
     {
         [SerializeField] private GameObject[] decorationAreas;
+        [SerializeField] private GameObject[] floorArea;
         [SerializeField] private GameObject[] decorationAssets;
+        [SerializeField] private GameObject[] floorDecorationAssets;
         [SerializeField] private GameObject[] obstacleAnchors;
         [SerializeField] private TileObject[] obstacles;
         [SerializeField] private TileObject[] collectibles;
@@ -36,22 +38,22 @@ namespace CrazyRubberProject
             powerUpAmount = powerUpAmountChoices[Random.Range(0, powerUpAmountChoices.Length)];
 
             ObtainAnchors();
-            DecorateTile();
+            DecorateTile(decorationAssets, decorationAreas);
+            //DecorateTile(floorDecorationAssets, floorArea);
             SetObjects(obstacles, tileManager.difficultyLevel);
             SetObjects(collectibles, gemAmount);
             if (powerUpAmount > 0)
             {
                 SetObjects(powerUps, powerUpAmount);
             }
-
         }
 
-        private void DecorateTile()
+        private void DecorateTile(GameObject[]myDecoAssets, GameObject[]myDecoAreas)
         {
             for (int i = 0; i < numberOfProps; i++)
             {
-                GameObject selectedArea = decorationAreas[Random.Range(0, decorationAreas.Length)];
-                GameObject selectedAsset = decorationAssets[Random.Range(0, decorationAssets.Length)];
+                GameObject selectedArea = myDecoAreas[Random.Range(0, myDecoAreas.Length)];
+                GameObject selectedAsset = myDecoAssets[Random.Range(0, myDecoAssets.Length)];
 
                 GameObject newDecoration = Instantiate(selectedAsset, GetRandomPointOnPlane(selectedArea), Quaternion.identity);
                 newDecoration.transform.parent = selectedArea.transform;
@@ -83,8 +85,8 @@ namespace CrazyRubberProject
 
                 PositionHandler(selectedObj, randomRow, randomCol);
 
-                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol)) as TileObject;
-                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;   
+                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
+                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform;
             }
         }
 
