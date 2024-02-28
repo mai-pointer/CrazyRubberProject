@@ -39,12 +39,10 @@ namespace CrazyRubberProject
             DecorateTile();
             SetObjects(obstacles, tileManager.difficultyLevel);
             SetObjects(collectibles, gemAmount);
-            /*if (powerUpAmount > 0)
+            if (powerUpAmount > 0)
             {
                 SetObjects(powerUps, powerUpAmount);
-            }*/
-            //SetObjects(powerUps, 1);
-
+            }
         }
 
         private void DecorateTile()
@@ -84,8 +82,8 @@ namespace CrazyRubberProject
 
                 PositionHandler(selectedObj, randomRow, randomCol);
 
-                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol)) as TileObject;
-                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform.parent;   
+                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
+                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform;
             }
         }
 

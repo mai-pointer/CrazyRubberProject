@@ -109,6 +109,7 @@ public class Interacciones : MonoBehaviour
                 if (elemento.usado) continue;
 
                 Destroy(other.gameObject);
+                Sonidos.GetSonido("Powerup");
 
                 elemento.usado = true;
                 elemento.funcion(elemento);
@@ -136,6 +137,7 @@ public class Interacciones : MonoBehaviour
             if (!inmortal)
             {
                 //Muerte
+                Sonidos.GetSonido("Muerte");
                 Controlador.ins.Muerto();
                 // Instancia el objeto
                 Instantiate(psMuerte, transform.parent);
