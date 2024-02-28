@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[DefaultExecutionOrder(0)]
+[DefaultExecutionOrder(1)]
 [DisallowMultipleComponent]
 
 public class Sonidos : MonoBehaviour
@@ -28,6 +28,8 @@ public class Sonidos : MonoBehaviour
     public static DictionaryBG<AudioClip> sonidos = new();
     public static DictionaryBG<AudioClip> musica = new();
 
+    public static bool enUso = false;
+
     public static Dictionary<string, Sonido> sonido { get => Save.Data.sonido; set => Save.Data.sonido = value; }
 
     private void OnValidate()
@@ -38,13 +40,18 @@ public class Sonidos : MonoBehaviour
 
     private void Awake()
     {
+        //Reproduce automaticamente la musica
+        if (!enUso)
+        {
+            if (autoPlay != "") GetMusica(autoPlay, true, true);
+        }
+
         // Convierte el script en Singleton
         if (transform.parent == null)
         {
             Instanciar<Sonidos>.Singletons(this, gameObject);
+            enUso = true;
         }
-        //Reproduce automaticamente la musica
-        if (autoPlay != "") GetMusica(autoPlay, true, true);
     }
 
     private void OnEnable()

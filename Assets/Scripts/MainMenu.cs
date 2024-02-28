@@ -16,14 +16,18 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        if (audioSource == null) return;
+
         // Reproducir la canción en bucle
         audioSource.loop = true;
-        //audioSource.Play();
+        audioSource.Play();
     }
 
     // Llamado cuando se presiona el botón de mutear
     public void ToggleMute()
     {
+        if (audioSource == null) return;
+
         isMuted = !isMuted; // Cambiar el estado de silencio (mute)
         if (isMuted)
         {
