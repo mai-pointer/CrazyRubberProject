@@ -3141,6 +3141,10 @@ MonoBehaviour:
       valor: {fileID: 8300000, guid: d3d1fabf2417a8e4284d79f65e62ab92, type: 3}
     - indice: Cambio
       valor: {fileID: 8300000, guid: 0e926c4c546256b419323909ea97619a, type: 3}
+    - indice: Moneda
+      valor: {fileID: 8300000, guid: e4ab34989aa665446a75223ce27277d5, type: 3}
+    - indice: Powerup
+      valor: {fileID: 8300000, guid: 898afd3a7e07706459429ae451c01326, type: 3}
   autoPlay: Musica
   _musica:
     data:
