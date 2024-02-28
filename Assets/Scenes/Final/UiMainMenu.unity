@@ -3139,6 +3139,8 @@ MonoBehaviour:
       valor: {fileID: 8300000, guid: 9d37665b51003aa40a1428748aa1e81e, type: 3}
     - indice: Salto
       valor: {fileID: 8300000, guid: d3d1fabf2417a8e4284d79f65e62ab92, type: 3}
+    - indice: Cambio
+      valor: {fileID: 8300000, guid: 0e926c4c546256b419323909ea97619a, type: 3}
   autoPlay: Musica
   _musica:
     data:
