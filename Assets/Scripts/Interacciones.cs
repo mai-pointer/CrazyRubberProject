@@ -61,12 +61,15 @@ public class Interacciones : MonoBehaviour
                 }
             }),
             new PowerUp("Multiplicador", 10, (PowerUp elemento) => {
-                transform.GetChild(1).GetComponent<Outline>().enabled = true;
+                //transform.GetChild(1).GetComponent<Outline>().enabled = true;
+                GetComponent<Outline>().enabled = true;
+
                 cantMonedas *= 2;
 
                 StartCoroutine(Esperar(elemento, () =>
                 {
-                    transform.GetChild(1).GetComponent<Outline>().enabled = false;
+                    GetComponent<Outline>().enabled = false;
+                    //transform.GetChild(1).GetComponent<Outline>().enabled = false;
                     cantMonedas /= 2;
                 }));
             }),

@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+
         if (sonidos)
         {
             muteMusicOn.gameObject.SetActive(Save.Data.musica.estado);

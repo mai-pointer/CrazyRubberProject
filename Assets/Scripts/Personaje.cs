@@ -37,10 +37,10 @@ public class Personaje : MonoBehaviour
 
     private void Awake()
     {
-        Outline outline = transform.GetChild(1).gameObject.AddComponent<Outline>();
-        outline.OutlineColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
-        outline.OutlineWidth = 7;
-        outline.enabled = false;
+        //Outline outline = transform.GetChild(1).gameObject.AddComponent<Outline>();
+        //outline.OutlineColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+        //outline.OutlineWidth = 7;
+        //outline.enabled = false;
     }
 
     private void Start()
