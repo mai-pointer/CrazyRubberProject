@@ -39,7 +39,6 @@ namespace CrazyRubberProject
 
             ObtainAnchors();
             DecorateTile(decorationAssets, decorationAreas);
-            //DecorateTile(floorDecorationAssets, floorArea);
             SetObjects(obstacles, tileManager.difficultyLevel);
             SetObjects(collectibles, gemAmount);
             if (powerUpAmount > 0)
@@ -82,11 +81,14 @@ namespace CrazyRubberProject
 
                 } while (PosAbailable(selectedObj, randomRow, randomCol) && currentAttemps<maxAttemps);
                 
+                if (currentAttemps < maxAttemps)
+                {
+                    PositionHandler(selectedObj, randomRow, randomCol);
 
-                PositionHandler(selectedObj, randomRow, randomCol);
+                    TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
+                    newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform;
 
-                TileObject newObj = Instantiate(selectedObj, obstacleAnchorPoints[randomCol][randomRow].transform.position, RotateObj(selectedObj, randomCol));
-                newObj.transform.parent = obstacleAnchorPoints[randomCol][randomRow].transform;
+                }
             }
         }
 
@@ -195,7 +197,7 @@ namespace CrazyRubberProject
             }
             else if (obstacle.size == 2)
             {
-                for (int i = 0; i <= 4; i++)
+                for (int i = 0; i <= columnAmount; i++)
                 {
                     occupiedPositions[i][randomRow] = true;
                 }
@@ -218,14 +220,14 @@ namespace CrazyRubberProject
             else
             {
 
-                for (int i = 0; i <= 4; i++)
+                for (int i = 0; i <= columnAmount; i++)
                 {
                     occupiedPositions[i][randomRow] = true;
                 }
 
                 if (randomRow != 0)
                 {
-                    for (int i = 0; i <= 4; i++)
+                    for (int i = 0; i <= columnAmount; i++)
                     {
                         occupiedPositions[i][randomRow - 1] = true;
                     }
