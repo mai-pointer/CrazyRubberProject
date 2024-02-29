@@ -27,7 +27,7 @@ public class Interacciones : MonoBehaviour
     private bool escudo;
     private bool inmortal;
 
-
+    public GameObject psMuerte;
     private void Start()
     {
         BoxCollider boxcollider = GetComponent<BoxCollider>();
@@ -61,12 +61,12 @@ public class Interacciones : MonoBehaviour
                 }
             }),
             new PowerUp("Multiplicador", 10, (PowerUp elemento) => {
-                GetComponent<Outline>().enabled = true;
+                transform.GetChild(1).GetComponent<Outline>().enabled = true;
                 cantMonedas *= 2;
 
                 StartCoroutine(Esperar(elemento, () =>
                 {
-                    GetComponent<Outline>().enabled = false;
+                    transform.GetChild(1).GetComponent<Outline>().enabled = false;
                     cantMonedas /= 2;
                 }));
             }),
@@ -136,6 +136,7 @@ public class Interacciones : MonoBehaviour
                 //Muerte
                 Sonidos.GetSonido("Muerte");
                 Controlador.ins.Muerto();
+                Instantiate(psMuerte, transform.parent);
                 Destroy(gameObject);
                 //**** Particulas/Animacion ****
             }

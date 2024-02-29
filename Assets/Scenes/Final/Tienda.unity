@@ -2428,11 +2428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de7b004e2700489c693c8f1f50792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
   exitButton: {fileID: 0}
   shopButton: {fileID: 0}
-  muteButton: {fileID: 0}
-  soundButton: {fileID: 0}
+  muteSoundOn: {fileID: 0}
+  muteSoundOff: {fileID: 0}
+  muteMusicOn: {fileID: 0}
+  muteMusicOff: {fileID: 0}
   quitConfirmationPanel: {fileID: 0}
   instructionPanel: {fileID: 0}
 --- !u!4 &1275281201
@@ -2953,6 +2954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441158549}
   - component: {fileID: 1441158548}
+  - component: {fileID: 1441158550}
   m_Layer: 0
   m_Name: Save
   m_TagString: Untagged
@@ -2991,6 +2993,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1441158550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441158547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d0754f463f7940a4d702d09746438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1462171292
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -634,7 +634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 280, y: 97.100006}
+  m_AnchoredPosition: {x: 280, y: 97.1001}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142041404
@@ -767,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 481, y: 118.00014}
+  m_AnchoredPosition: {x: 481, y: 118}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186656678
@@ -1273,6 +1273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 538931519}
   - component: {fileID: 538931518}
+  - component: {fileID: 538931520}
   m_Layer: 0
   m_Name: Save
   m_TagString: Untagged
@@ -1295,6 +1296,15 @@ MonoBehaviour:
   data:
     mejor_puntuacion: 0
     monedas: 0
+    vibracion:
+      estado: 1
+      volumen: 100
+    musica:
+      estado: 1
+      volumen: 100
+    sonidos:
+      estado: 1
+      volumen: 100
   mensajes: 0
 --- !u!4 &538931519
 Transform:
@@ -1311,6 +1321,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &538931520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538931517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d0754f463f7940a4d702d09746438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &607540423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.1851807, y: 98.688934}
+  m_AnchoredPosition: {x: 1.1850586, y: 98.688965}
   m_SizeDelta: {x: 29.829956, y: -1239.6931}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708040843
@@ -1809,7 +1831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -280, y: 97.100006}
+  m_AnchoredPosition: {x: -280, y: 97.1001}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &949662447
@@ -3741,13 +3763,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de7b004e2700489c693c8f1f50792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
   exitButton: {fileID: 807722965}
   shopButton: {fileID: 199680816}
-  muteButton: {fileID: 427688518}
-  soundButton: {fileID: 427688518}
+  muteSoundOn: {fileID: 0}
+  muteSoundOff: {fileID: 0}
+  muteMusicOn: {fileID: 0}
+  muteMusicOff: {fileID: 0}
   quitConfirmationPanel: {fileID: 1106383250}
   instructionPanel: {fileID: 0}
+  sonidos: 0
 --- !u!4 &2084683682
 Transform:
   m_ObjectHideFlags: 0
@@ -3821,6 +3845,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: outlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: outlineColor.g
+      value: 0.9018445
+      objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: outlineColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1741780467707069952, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: m_Name
@@ -3834,13 +3878,19 @@ PrefabInstance:
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: fuerzaSalto
-      value: 5.5
+      value: 5.75
       objectReference: {fileID: 0}
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: velocidadRotacion
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 7776052841961935772, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: psMuerte
+      value: 
+      objectReference: {fileID: 6146545414153545494, guid: 61753401622c2a947a30e2147430e97d,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
