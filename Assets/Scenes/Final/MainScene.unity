@@ -634,7 +634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 280, y: 97.100006}
+  m_AnchoredPosition: {x: 280, y: 97.1001}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142041404
@@ -767,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 481, y: 118.00014}
+  m_AnchoredPosition: {x: 481, y: 118}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186656678
@@ -1448,7 +1448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.1851807, y: 98.688934}
+  m_AnchoredPosition: {x: 1.1850586, y: 98.688965}
   m_SizeDelta: {x: 29.829956, y: -1239.6931}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708040843
@@ -1831,7 +1831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -280, y: 97.100006}
+  m_AnchoredPosition: {x: -280, y: 97.1001}
   m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &949662447
@@ -3845,6 +3845,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: outlineColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: outlineColor.g
+      value: 0.9018445
+      objectReference: {fileID: 0}
+    - target: {fileID: 725279831174240331, guid: 9c2bceb926f8c464e8bed7f573f23b76,
+        type: 3}
+      propertyPath: outlineColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1741780467707069952, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: m_Name
@@ -3858,7 +3878,7 @@ PrefabInstance:
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
       propertyPath: fuerzaSalto
-      value: 5.5
+      value: 5.75
       objectReference: {fileID: 0}
     - target: {fileID: 5660927204464916822, guid: 9c2bceb926f8c464e8bed7f573f23b76,
         type: 3}
