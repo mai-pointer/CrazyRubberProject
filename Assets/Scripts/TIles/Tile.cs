@@ -14,7 +14,7 @@ namespace CrazyRubberProject
         [SerializeField] private TileObject[] obstacles;
         [SerializeField] private TileObject[] collectibles;
         [SerializeField] private TileObject[] powerUps;
-        [SerializeField] public GameObject anchorPoint;
+        [SerializeField] private GameObject decoContainer;
         [SerializeField] private int numberOfProps;
 
         private TileManager tileManager;
@@ -55,8 +55,8 @@ namespace CrazyRubberProject
                 GameObject selectedArea = myDecoAreas[Random.Range(0, myDecoAreas.Length)];
                 GameObject selectedAsset = myDecoAssets[Random.Range(0, myDecoAssets.Length)];
 
-                GameObject newDecoration = Instantiate(selectedAsset, GetRandomPointOnPlane(selectedArea), Quaternion.identity);
-                newDecoration.transform.parent = selectedArea.transform;
+                GameObject newDecoration = Instantiate(selectedAsset, GetRandomPointOnPlane(selectedArea), Quaternion.Euler(0, Random.Range(0,360),0));
+                newDecoration.transform.parent = decoContainer.transform;
             }
         }
 

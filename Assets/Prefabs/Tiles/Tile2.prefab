@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2138826966510450001}
   m_Layer: 0
-  m_Name: AnchorPoint
+  m_Name: DecoContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   - {fileID: 1852102749804852293, guid: 7c1dee2404023dc4783f13f0a988504f, type: 3}
   - {fileID: 1699852888586963472, guid: 3d8b65f227532c24ea3d1af0ea9acae4, type: 3}
   - {fileID: 3891785561380631372, guid: 95449d48e4d49f44bb9fb624f7c95a5f, type: 3}
-  anchorPoint: {fileID: 909368536406671174}
+  decoContainer: {fileID: 909368536406671174}
   numberOfProps: 10
 --- !u!65 &3365825208630732272
 BoxCollider:
