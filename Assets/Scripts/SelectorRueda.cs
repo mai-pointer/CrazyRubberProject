@@ -161,20 +161,20 @@ public class SelectorRueda : MonoBehaviour
                     if (PlayerPrefs.GetInt("RuedaSeleccionada", 0) == indiceActual)
                     {
                         botonSelect.interactable = false;
-                        txtBoton.text = "Seleccionada";
+                        txtBoton.text = "Selected";
                     }
                     else
                     {
                         botonSelect.interactable = true;
-                        txtBoton.text = "Seleccionar";
+                        txtBoton.text = "Select";
                     }
-                    txtPrecio.text = "Desbloqueada";
+                    txtPrecio.text = "Unlocked";
                 }
                 else
                 {
                     botonSelect.interactable = true;
                     txtPrecio.text = money + "$ / " + rueda.precio.ToString() + "$";
-                    txtBoton.text = "Comprar";
+                    txtBoton.text = "Buy";
                 }
                 break;
             }
@@ -189,7 +189,7 @@ public class SelectorRueda : MonoBehaviour
         {
             PlayerPrefs.SetInt("RuedaSeleccionada", ruedaActual.indice);
             botonSelect.interactable = false;
-            txtBoton.text = "Seleccionada";
+            txtBoton.text = "Selected";
         }
         else
         {
@@ -211,7 +211,7 @@ public class SelectorRueda : MonoBehaviour
                 // Actualizar la interfaz de usuario
                 txtPrecio.text = "Desbloqueada";
                 botonSelect.interactable = false;
-                txtBoton.text = "Seleccionada";
+                txtBoton.text = "Selected";
 
                 // Mostrar mensaje de éxito
                 Debug.Log("Rueda comprada con éxito.");
