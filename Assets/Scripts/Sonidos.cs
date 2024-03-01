@@ -49,18 +49,21 @@ public class Sonidos : MonoBehaviour
         //Sonidos.Volumen(TipoSonido.sonidos, sonidosVolumen);
         //Sonidos.Volumen(TipoSonido.musica, musicaVolumen);
 
+        // Convierte el script en Singleton
+        if (transform.parent == null)
+        {
+            Instanciar<Sonidos>.Singletons(this, gameObject);
+        }
+    }
+
+    private void Start()
+    {
         //Reproduce automaticamente la musica
         if (!enUso)
         {
             if (autoPlay != "") GetMusica(autoPlay, true, true);
         }
-
-        // Convierte el script en Singleton
-        if (transform.parent == null)
-        {
-            Instanciar<Sonidos>.Singletons(this, gameObject);
-            enUso = true;
-        }
+        enUso = true;
     }
 
     private void OnEnable()
@@ -96,6 +99,10 @@ public class Sonidos : MonoBehaviour
 
         foreach (var elemento in lista)
         {
+            if (elemento == null) continue;
+            if (elemento.sonido == null) continue;
+
+
             //Se mutea o desmutea
             elemento.sonido.volume = (!Get(tipo).estado)
             ? 0
