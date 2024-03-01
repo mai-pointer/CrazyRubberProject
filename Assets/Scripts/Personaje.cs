@@ -80,13 +80,14 @@ public class Personaje : MonoBehaviour
 
                 RaycastHit hit;
 
-                if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje))
+                int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
+                int layerMask = ~playerLayerMask;
+
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, alturaPersonaje, layerMask))
                 {
-                    //anim.SetTrigger("Salto");
-                    //StartCoroutine(Esperar(0.2f, () => {
+                    // El raycast golpeó algo que no está en la capa del jugador
                     agachado = false;
                     rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
-                    //}));
                 }
                 break;
             case 1:

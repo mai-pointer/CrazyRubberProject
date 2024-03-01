@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5863320898091074535}
   - component: {fileID: 7852299963148424194}
   - component: {fileID: 3577653622348334123}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: rim_default2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,6 +166,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 310284c67a54c644fadd303b32256081, type: 2}
+    - target: {fileID: -3080669958132591077, guid: 54e8b9d672e3b3048be9c71a542cde10,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 407342624013186569, guid: 54e8b9d672e3b3048be9c71a542cde10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,6 +211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RuedaCoche
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54e8b9d672e3b3048be9c71a542cde10,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5655170121641476667, guid: 54e8b9d672e3b3048be9c71a542cde10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -240,6 +250,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.664
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394597640583564937, guid: 54e8b9d672e3b3048be9c71a542cde10,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

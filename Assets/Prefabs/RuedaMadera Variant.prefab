@@ -88,11 +88,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.01199981
       objectReference: {fileID: 0}
+    - target: {fileID: 2454484697170598997, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182466745403379232, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3193980159785565064, guid: 475e8c41048a4824fab1957363e92f00,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c439d07acb8429b4dbdff1cab4ae893b, type: 2}
+    - target: {fileID: 3233912769894382966, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317742912639983008, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3320106818223191355, guid: 475e8c41048a4824fab1957363e92f00,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -133,10 +153,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8fa20669009eff44595de5356f3fd10d, type: 2}
+    - target: {fileID: 5049683004222517300, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857499595728825889, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6198939376272417044, guid: 475e8c41048a4824fab1957363e92f00,
         type: 3}
       propertyPath: m_Name
       value: RuedaMadera Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198939376272417044, guid: 475e8c41048a4824fab1957363e92f00,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6198939376272417044, guid: 475e8c41048a4824fab1957363e92f00,
         type: 3}
